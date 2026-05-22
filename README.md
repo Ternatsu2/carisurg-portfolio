@@ -12,3 +12,5 @@ The first notebook cleans the "Gender" column in the reduced emergency triage da
 It shows the original values, the cleaned values, and whether any values were left unmatched.
 
 The second notebook cleans the class columns from Tutorial 2, then cleans Pulse as the selected column.
+
+The third notebook creates a Pulse histogram and an Age vs Pulse scatter plot for the data visualization assignment.

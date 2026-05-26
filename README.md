@@ -4,13 +4,20 @@ Week 0 work for the CariSurg MedTech Pathways Healthcare AI track.
 
 ## Week 0
 
-The first notebook cleans the "Gender" column in the reduced emergency triage dataset.
+This repo contains my Week 0 onboarding work with the reduced emergency triage dataset.
 
-- "1" = Male
-- "0" = Female
+### Notebooks
 
-It shows the original values, the cleaned values, and whether any values were left unmatched.
+- `week0/notebooks/day1_clean_gender.ipynb`: cleaned the "Gender" column and checked the mapped values.
+- `week0/notebooks/day2_clean_pulse.ipynb`: cleaned GCS, SBP, Temp, and Pulse, then checked the final Pulse range.
+- `week0/notebooks/day3_visualization.ipynb`: made a Pulse histogram and an Age vs Pulse scatter plot.
 
-The second notebook cleans the class columns from Tutorial 2, then cleans Pulse as the selected column.
+### Reports
 
-The third notebook creates a Pulse histogram and an Age vs Pulse scatter plot for the data visualization assignment.
+- `week0/reports/assignment4_vital_sign_description.pdf`: short write-up on Pulse as a triage vital sign.
+- `week0/reports/assignment5_unconsidered_metrics.pdf`: short write-up on SpO2 as an extra triage measure.
+- `week0/reports/assignment6_triage_pseudocode.pdf`: pseudocode for a rule-based digital triage screen.
+
+### Outputs
+
+The Day 3 plot images are saved in `week0/outputs/plots`.

@@ -1,6 +1,6 @@
 # CariSurg Portfolio
 
-Week 0 work for the CariSurg MedTech Pathways Healthcare AI track.
+CariSurg MedTech Pathways Healthcare AI portfolio work.
 
 ## Week 0
 
@@ -21,3 +21,9 @@ This repo contains my Week 0 onboarding work with the reduced emergency triage d
 ### Outputs
 
 The Day 3 plot images are saved in `week0/outputs/plots`.
+
+## Week 1
+
+Week 1 focuses on research fundamentals and a preliminary proposal direction for AI-assisted emergency triage.
+
+- `week1/reports/week1_interim_ai_triage_memo.pdf`: interim memo with three paper summaries and a draft problem statement.

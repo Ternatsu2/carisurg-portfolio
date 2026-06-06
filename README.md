@@ -26,4 +26,4 @@ The Day 3 plot images are saved in `week0/outputs/plots`.
 
 Week 1 focuses on research fundamentals and a preliminary proposal direction for AI-assisted emergency triage.
 
-- `week1/reports/week1_interim_ai_triage_memo.pdf`: interim memo with three paper summaries and a draft problem statement.
+- `week1/reports/week1_interim_ai_triage_memo.pdf`: interim memo with five paper summaries and a draft problem statement.

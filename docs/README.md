@@ -3,6 +3,8 @@
 Week 1 documents:
 
 - `week1_interim_ai_triage_memo.md`
+- `week1_interim_ai_triage_memo.pdf`
 - `week1_final_ai_triage_proposal.md`
+- `week2_reference_library.bib`
 
-The Week 2 final deliverable will update the proposal with generated citations and at least seven papers.
+The Week 2 update expands the proposal to eight papers and keeps the citation records in a BibTeX file so the bibliography is easier to check and regenerate.

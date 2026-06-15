@@ -1,8 +1,8 @@
-# Week 1 Final Proposal: AI-Assisted Emergency Triage
+# Week 1 Final Proposal: AI-Assisted Emergency Triage (Week 2 Update)
 
 Student: Terry Benjamin Jr.  
 Programme: CariSurg MedTech Pathways, Healthcare AI  
-Date: 8 June 2026
+Date: 15 June 2026
 
 ## Project Direction
 
@@ -10,9 +10,9 @@ I am focusing on AI-assisted emergency triage as clinician-facing decision suppo
 
 ## Problem Statement
 
-Emergency triage in busy EDs depends on rapid judgement from nurses working with incomplete data, crowding, and limited resources. Recent AI triage work reports improved prediction of acuity, disposition, and critical care need, but many studies rely on retrospective or single-setting datasets (Da'Costa et al., 2025; Porto, 2024; Tyler et al., 2024). This pilot will test whether clinician-in-the-loop support can flag high-risk patients from routine triage variables while keeping nurses responsible for the final decision.
+Emergency triage in busy EDs depends on rapid judgement from nurses working with incomplete data, crowding, and limited resources. Recent AI triage work reports improved prediction of acuity, disposition, and critical care need, including studies using machine learning, NLP, GPT-4, and triage decision support (Porto, 2024; Taylor et al., 2025; Williams et al., 2024). This pilot will test whether clinician-in-the-loop support can flag high-risk patients from routine triage variables while keeping nurses responsible for final decisions.
 
-Word count: 75
+Word count: 76
 
 ## Literature Summaries
 
@@ -28,17 +28,21 @@ Porto (2024) conducted a systematic review of machine learning and natural langu
 
 Cha and Kim (2025) reviewed ethical and legal issues around AI in emergency medicine triage and resource allocation. They searched literature after January 2020 and analysed 27 papers using a scoping review approach. The review found recurring concerns around data privacy, algorithmic bias, automation dependency, accountability, and explainability, with human-in-the-loop design and continuous validation appearing as common safeguards. The authors also found that patient and public involvement, social validation, generative AI risks, and persuasive AI risks have not been addressed deeply enough.
 
+Williams et al. (2024) tested whether GPT-4 could compare adult ED patient presentations and identify the higher-acuity case. They used de-identified clinical text from 251,401 adult ED visits and evaluated 10,000 patient pairs with different Emergency Severity Index levels. GPT-4 identified the higher-acuity patient with 89% accuracy overall, and its performance was close to physician judgement in a 500-pair subsample. The study is useful for this proposal because it shows how an LLM can interpret triage text, but it was retrospective, single-system, pairwise, and not tested as a live nurse-facing triage tool.
+
+Taylor et al. (2025) studied the impact of an AI-informed triage clinical decision support system in emergency department care. Their work matters because it moves beyond offline modelling and looks at how AI triage support affects real ED operations. The authors reported that the system was associated with improved triage performance and patient flow, including better identification of patients who needed critical care. The main limitation for this proposal is that results from one implementation context do not automatically transfer to Caribbean ED workflows, so local validation and human oversight still matter.
+
 ## Gaps Identified
 
 ### Gap 1: Local validation is missing for Caribbean-style ED workflows
 
-The literature shows strong model performance in selected datasets, but it does not prove that the same models would behave well in a Caribbean ED. Porto (2024) found that many studies were retrospective, and Tyler et al. (2024) also showed that much of the field still tests models on existing data rather than live workflows. Chang et al. (2024) improved prediction by using structured data and triage notes, but their data came from two Taiwanese hospitals. Da'Costa et al. (2025) also warned that data quality and workflow integration remain barriers.
+The literature shows strong model performance in selected datasets, but it does not prove that the same models would behave well in a Caribbean ED. Porto (2024) found that many studies were retrospective, and Tyler et al. (2024) also showed that much of the field still tests models on existing data rather than live workflows. Chang et al. (2024) improved prediction by using structured data and triage notes, and Taylor et al. (2025) showed that implemented AI triage support can affect ED care, but those settings still differ from the resource and workflow conditions this programme is trying to understand. Da'Costa et al. (2025) also warned that data quality and workflow integration remain barriers.
 
 This matters because triage is shaped by local staffing, documentation habits, equipment, patient mix, and resource limits. A model trained or tested in a high-resource hospital may flag risk differently in a setting with different admission thresholds, bed pressure, transport delays, or missing clinical fields. The actionable gap is to test a small triage-support prototype against the kind of variables available in this programme, then make the limits visible instead of presenting the model as generally valid.
 
 ### Gap 2: Accuracy alone does not give nurses enough reason to trust the output
 
-Several studies report accuracy, AUROC, F1 score, or similar metrics, but those numbers do not tell a triage nurse why a specific patient was flagged. Araouchi and Adda (2024) showed that model stacking can improve performance, and Chang et al. (2024) showed that NLP can improve disposition prediction, but neither result solves the bedside question of how a clinician should interpret one alert. Porto (2024) noted that explainable AI remains underexplored in this field. Cha and Kim (2025) also identified explainability, accountability, automation dependency, and human-in-the-loop design as key ethical concerns.
+Several studies report accuracy, AUROC, F1 score, or similar metrics, but those numbers do not tell a triage nurse why a specific patient was flagged. Araouchi and Adda (2024) showed that model stacking can improve performance, and Chang et al. (2024) showed that NLP can improve disposition prediction, but neither result solves the bedside question of how a clinician should interpret one alert. Williams et al. (2024) showed that GPT-4 can compare acuity from ED text, but that still leaves design questions about explanation, escalation, and clinician override. Porto (2024) noted that explainable AI remains underexplored in this field. Cha and Kim (2025) also identified explainability, accountability, automation dependency, and human-in-the-loop design as key ethical concerns.
 
 This matters because a hidden score can create two opposite risks. A nurse may ignore it because it gives no useful reason, or may over-trust it because it looks technical. A useful triage support tool should show the specific factors behind a flag, such as low SpO2, abnormal respiratory rate, hypotension, concerning chief complaint, or age plus abnormal vitals. It should also let the nurse override the system and record why.
 
@@ -46,7 +50,9 @@ This matters because a hidden score can create two opposite risks. A nurse may i
 
 I propose a clinician-in-the-loop triage support prototype for routine ED triage data. The prototype would take structured triage variables such as age, sex if available, presenting complaint, mode of arrival, pulse, respiratory rate, blood pressure, temperature, SpO2, GCS, and pain score. Those variables match common predictors used in ED triage modelling, including vitals, chief complaint, blood pressure, oxygen saturation, age, and mode of arrival (Chang et al., 2024; Porto, 2024). It would output a risk band, a short explanation, and a recommended review priority. The output would stay framed as decision support, not a final diagnosis or autonomous triage decision.
 
-The first version should combine a transparent rule-based baseline with a simple machine learning model if the Week 5 dataset supports it. The rule baseline would flag clinically defendable patterns such as severe hypoxia, very low GCS, hypotension, abnormal respiratory rate, fever with abnormal vitals, or multiple moderate abnormalities together. The model baseline could then be compared against those rules using sensitivity, specificity, precision, recall, confusion matrices, and calibration checks. This fits the literature because recent work has tested several machine learning approaches for triage, but reviewers still warn that many results come from retrospective datasets and need stronger validation before use in practice (Araouchi & Adda, 2024; Porto, 2024; Tyler et al., 2024).
+The first version should combine a transparent rule-based baseline with a simple machine learning model if the Week 5 dataset supports it. The rule baseline would flag clinically defendable patterns such as severe hypoxia, very low GCS, hypotension, abnormal respiratory rate, fever with abnormal vitals, or multiple moderate abnormalities together. If free-text chief complaint or triage notes are available later, a small LLM or NLP component could be tested as a separate layer, not as the only source of risk scoring. That keeps the design aligned with the NLP and LLM findings from Chang et al. (2024), Porto (2024), and Williams et al. (2024), while avoiding an opaque chatbot-style triage tool.
+
+The model baseline could then be compared against the rules using sensitivity, specificity, precision, recall, confusion matrices, and calibration checks. This fits the literature because recent work has tested several machine learning approaches for triage, but reviewers still warn that many results come from retrospective datasets and need stronger validation before use in practice (Araouchi & Adda, 2024; Porto, 2024; Tyler et al., 2024). It also responds to Taylor et al. (2025), because implementation matters as much as offline performance once a system reaches a real ED.
 
 The prototype should show its reasoning in plain language. For example, a patient might be flagged because "SpO2 is below 90%" or because "respiratory rate and pulse are both outside expected adult ranges." The nurse would see the flag, the reasons, and an option to accept, reject, or mark the case for review. The system should log overrides because those decisions are useful for later error analysis and for understanding where the model disagrees with clinical judgement. That human-in-the-loop design responds to published concerns about explainability, accountability, automation dependency, and clinician trust (Cha & Kim, 2025; Da'Costa et al., 2025; Porto, 2024).
 
@@ -59,9 +65,14 @@ By the end of the project, the portfolio artefact could include:
 - A cleaned triage dataset or synthetic triage-style dataset with documented assumptions.
 - A rule-based triage risk baseline.
 - A simple predictive model, if the dataset supports supervised learning.
+- A small LLM or NLP experiment for chief complaint text, only if the dataset includes text fields.
 - Evaluation tables showing where the system over-flags and under-flags risk.
 - A small interface or notebook view that shows the patient risk band and the reasons for the flag.
 - A README explaining the clinical limits, data limits, ethical safeguards, and why the tool must remain clinician-facing decision support.
+
+## Reference Workflow
+
+For the Week 2 update, I checked each paper by title and DOI and kept the references in one APA-style list. The file docs/week2_reference_library.bib keeps the same citation records in one place so the bibliography can be regenerated instead of retyped by hand.
 
 ## References
 
@@ -75,4 +86,8 @@ Da'Costa, A., Teke, J., Origbo, J. E., Osonuga, A., Egbon, E., & Olawade, D. B. 
 
 Porto, B. M. (2024). Improving triage performance in emergency departments using machine learning and natural language processing: A systematic review. *BMC Emergency Medicine, 24*, Article 219. https://doi.org/10.1186/s12873-024-01135-2
 
+Taylor, R. A., Chmura, C., Hinson, J., Steinhart, B., Sangal, R., Venkatesh, A. K., Xu, H., Cohen, I., Faustino, I. V., & Levin, S. (2025). Impact of artificial intelligence-based triage decision support on emergency department care. *NEJM AI, 2*(3). https://doi.org/10.1056/AIoa2400296
+
 Tyler, S., Olis, M., Aust, N., Patel, L., Simon, L., Triantafyllidis, C., Patel, V., Lee, D. W., Ginsberg, B., Ahmad, H., & Jacobs, R. J. (2024). Use of artificial intelligence in triage in hospital emergency departments: A scoping review. *Cureus, 16*(5), Article e59906. https://doi.org/10.7759/cureus.59906
+
+Williams, C. Y. K., Zack, T., Miao, B. Y., Sushil, M., Wang, M., Kornblith, A. E., & Butte, A. J. (2024). Use of a large language model to assess clinical acuity of adults in the emergency department. *JAMA Network Open, 7*(5), Article e248895. https://doi.org/10.1001/jamanetworkopen.2024.8895

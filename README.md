@@ -13,7 +13,7 @@ The main audience is CariSurg tutors and clinical or technical reviewers who wan
 ## Repository Layout
 
 - `notebooks/`: cleaned Week 0 notebook copies for the portfolio.
-- `docs/`: Week 1 memo and proposal documents in Markdown.
+- `docs/`: Week 1 memo, the Week 2-updated proposal, and the reference library.
 - `data/`: placeholder for programme datasets. Real patient data should not be committed here.
 - `week0/`: original Week 0 submission folders and outputs.
 - `week1/`: original Week 1 report folder.
@@ -37,7 +37,7 @@ Week 1 focuses on research fundamentals and a preliminary proposal direction for
 
 - `week1/reports/week1_interim_ai_triage_memo.pdf`: interim memo with paper summaries and a draft problem statement.
 - `docs/week1_interim_ai_triage_memo.md`: Markdown copy of the interim memo.
-- `docs/week1_final_ai_triage_proposal.md`: Markdown copy of the final proposal draft.
+- `docs/week1_final_ai_triage_proposal.md`: Week 2-updated proposal with eight papers and DOI-checked references.
 
 ## Setup
 

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <style>
+    .title{font:700 30px Arial, sans-serif; fill:#111111;}
+    .h{font:700 18px Arial, sans-serif; fill:#1d1d1d;}
+    .t{font:14px Arial, sans-serif; fill:#222222;}
+    .s{font:12px Arial, sans-serif; fill:#444444;}
+    .axis{stroke:#333333; stroke-width:1.2;}
+    .grid{stroke:#dddddd; stroke-width:1;}
+    .green{fill:#3f7252;}
+    .copper{fill:#a4653b;}
+    .gold{fill:#988550;}
+    .grey{fill:#676767;}
+    .panel{fill:#ffffff; stroke:#e6e6e6; stroke-width:1;}
+  </style>
+  <text x="600" y="44" text-anchor="middle" class="title">FraudShield Week 5 Data Quality Dashboard</text>
+
+  <rect x="48" y="82" width="520" height="280" class="panel"/>
+  <text x="308" y="116" text-anchor="middle" class="h">Missing fields that need interpretation</text>
+  <line x1="230" y1="318" x2="520" y2="318" class="axis"/>
+  <line x1="230" y1="140" x2="230" y2="318" class="axis"/>
+  <line x1="326" y1="140" x2="326" y2="318" class="grid"/>
+  <line x1="423" y1="140" x2="423" y2="318" class="grid"/>
+  <line x1="520" y1="140" x2="520" y2="318" class="grid"/>
+  <text x="220" y="194" text-anchor="end" class="t">Wallet import | card_bin</text>
+  <rect x="230" y="174" width="193" height="32" class="copper"/>
+  <text x="432" y="195" class="t">2 (40.0%)</text>
+  <text x="220" y="254" text-anchor="end" class="t">Wallet import | minutes_since_previous</text>
+  <rect x="230" y="234" width="96" height="32" class="copper"/>
+  <text x="336" y="255" class="t">1 (20.0%)</text>
+  <text x="230" y="342" class="s">0</text><text x="326" y="342" class="s">1</text><text x="423" y="342" class="s">2</text><text x="514" y="342" class="s">3</text>
+  <text x="375" y="356" text-anchor="middle" class="s">Missing count</text>
+
+  <rect x="632" y="82" width="520" height="280" class="panel"/>
+  <text x="892" y="116" text-anchor="middle" class="h">Wallet sample, 2 chargeback-linked deposits</text>
+  <line x1="700" y1="318" x2="1110" y2="318" class="axis"/>
+  <line x1="700" y1="140" x2="700" y2="318" class="axis"/>
+  <line x1="700" y1="280" x2="1110" y2="280" class="grid"/>
+  <line x1="700" y1="232" x2="1110" y2="232" class="grid"/>
+  <line x1="700" y1="184" x2="1110" y2="184" class="grid"/>
+  <line x1="700" y1="140" x2="1110" y2="140" class="grid"/>
+  <circle cx="700" cy="174" r="9" class="green"/><circle cx="700" cy="174" r="15" fill="none" stroke="#a4653b" stroke-width="4"/>
+  <circle cx="800" cy="176" r="9" class="green"/><circle cx="800" cy="176" r="15" fill="none" stroke="#a4653b" stroke-width="4"/>
+  <circle cx="900" cy="120" r="9" class="copper"/>
+  <circle cx="985" cy="300" r="9" class="green"/>
+  <circle cx="1095" cy="258" r="9" class="copper"/>
+  <text x="694" y="340" class="s">0</text><text x="795" y="340" class="s">27</text><text x="892" y="340" class="s">51</text><text x="978" y="340" class="s">75</text><text x="1085" y="340" class="s">113</text>
+  <text x="905" y="356" text-anchor="middle" class="s">Minutes from first transaction</text>
+  <circle cx="1010" cy="150" r="8" class="green"/><text x="1026" y="155" class="s">DEPOSIT</text>
+  <circle cx="1010" cy="176" r="8" class="copper"/><text x="1026" y="181" class="s">WITHDRAWAL</text>
+  <circle cx="1010" cy="202" r="12" fill="none" stroke="#a4653b" stroke-width="4"/><text x="1026" y="207" class="s">Chargeback linked</text>
+
+  <rect x="48" y="410" width="520" height="280" class="panel"/>
+  <text x="308" y="444" text-anchor="middle" class="h">Evidence rows by source table</text>
+  <line x1="230" y1="646" x2="520" y2="646" class="axis"/>
+  <line x1="230" y1="468" x2="230" y2="646" class="axis"/>
+  <line x1="326" y1="468" x2="326" y2="646" class="grid"/>
+  <line x1="423" y1="468" x2="423" y2="646" class="grid"/>
+  <line x1="520" y1="468" x2="520" y2="646" class="grid"/>
+  <text x="220" y="496" text-anchor="end" class="t">geolocation_events</text><rect x="230" y="478" width="193" height="28" class="grey"/><text x="432" y="497" class="t">2</text>
+  <text x="220" y="546" text-anchor="end" class="t">wallet_transactions</text><rect x="230" y="528" width="193" height="28" class="grey"/><text x="432"“Ò#SCr"6Æ73Ò'B#ã#Â÷FW‡Cà¢ÇFW‡BƒÒ###"“Ò#S“b"FW‡BÖæ6†÷#Ò&VæB"6Æ73Ò'B#æ&WG3Â÷FW‡CãÇ&V7BƒÒ##3"“Ò#Ss‚"v–GFƒÒ#“b"†V–v‡CÒ##‚"6Æ73Ò&w&W’"óãÇFW‡BƒÒ#33b"“Ò#S“r"6Æ73Ò'B#ãÂ÷FW‡Cà¢ÇFW‡BƒÒ###"“Ò#c3b"FW‡BÖæ6†÷#Ò&VæB"6Æ73Ò'B#æ66÷VçG3Â÷FW‡CãÇ&V7BƒÒ##3"“Ò#c‚"v–GFƒÒ#“b"†V–v‡CÒ##‚"6Æ73Ò&w&W’"óãÇFW‡BƒÒ#33b"“Ò#c3r"6Æ73Ò'B#ãÂ÷FW‡Cà¢ÇFW‡BƒÒ#3sR"“Ò#csB"FW‡BÖæ6†÷#Ò&Ö–FFÆR"6Æ73Ò'2#äWf–FVæ6R&÷w3Â÷FW‡Cà ¢Ç&V7BƒÒ#c3""“Ò#C"v–GFƒÒ#S#"†V–v‡CÒ##ƒ"6Æ73Ò'æVÂ"óà¢ÇFW‡BƒÒ#ƒ“""“Ò#CCB"FW‡BÖæ6†÷#Ò&Ö–FFÆR"6Æ73Ò&‚#åF÷ÓfVGW&R&VF–æW73Â÷FW‡Cà¢ÆÆ–æRƒÒ#ƒC"“Ò#cCb"ƒ#Ò#"“#Ò#cCb"6Æ73Ò&†—2"óà¢ÆÆ–æRƒÒ#ƒC"“Ò#Cc‚"ƒ#Ò#ƒC"“#Ò#cCb"6Æ73Ò&†—2"óà¢ÆÆ–æRƒÒ#ƒs’"“Ò#Cc‚"ƒ#Ò#ƒs’"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÆÆ–æRƒÒ#“‚"“Ò#Cc‚"ƒ#Ò#“‚"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÆÆ–æRƒÒ#“Sr"“Ò#Cc‚"ƒ#Ò#“Sr"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÆÆ–æRƒÒ#““b"“Ò#Cc‚"ƒ#Ò#““b"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÆÆ–æRƒÒ#3R"“Ò#Cc‚"ƒ#Ò#3R"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÆÆ–æRƒÒ#sB"“Ò#Cc‚"ƒ#Ò#sB"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÆÆ–æRƒÒ#"“Ò#Cc‚"ƒ#Ò#"“#Ò#cCb"6Æ73Ò&w&–B"óà¢ÇFW‡BƒÒ#ƒ3"“Ò#C“""FW‡BÖæ6†÷#Ò&VæB"6Æ73Ò'B#å&VG’æ÷sÂ÷FW‡CãÇ&V7BƒÒ#ƒC"“Ò#CsB"v–GFƒÒ##C"†V–v‡CÒ##‚"6Æ73Ò&w&VVâ"óãÇFW‡BƒÒ#ƒ‚"“Ò#C“2"6Æ73Ò'B#ãsÂ÷FW‡Cà¢ÇFW‡BƒÒ#ƒ3"“Ò#SC""FW‡BÖæ6†÷#Ò&VæB"6Æ73Ò'B#å&÷F÷G—RöæÇ“Â÷FW‡CãÇ&V7BƒÒ#ƒC"“Ò#S#B"v–GFƒÒ#3B"†V–v‡CÒ##‚"6Æ73Ò&w&W’"óãÇFW‡BƒÒ#ƒƒB"“Ò#SC2"6Æ73Ò'B#ãÂ÷FW‡Cà¢ÇFW‡BƒÒ#ƒ3"“Ò#S“""FW‡BÖæ6†÷#Ò&VæB"6Æ73Ò'B#å&VG’f÷"F—7Æ’Âæ÷BVæ÷Vv‚f÷"G&–æ–æsÂ÷FW‡CãÇ&V7BƒÒ#ƒC"“Ò#SsB"v–GFƒÒ#3B"†V–v‡CÒ##‚"6Æ73Ò&vöÆB"óãÇFW‡BƒÒ#ƒƒB"“Ò#S“2"6Æ73Ò'B#ãÂ÷FW‡Cà¢ÇFW‡BƒÒ#ƒ3"“Ò#c3b"FW‡BÖæ6†÷#Ò&VæB"6Æ73Ò'B#äæVVG27G'V7GW&VBµ”2f–VÆCÂ÷FW‡CãÇ&V7BƒÒ#ƒC"“Ò#c‚"v–GFƒÒ#3B"†V–v‡CÒ##‚"6Æ73Ò&6÷W""óãÇFW‡BƒÒ#ƒƒB"“Ò#c3r"6Æ73Ò'B#ãÂ÷FW‡Cà¢ÇFW‡BƒÒ#“sR"“Ò#csB"FW‡BÖæ6†÷#Ò&Ö–FFÆR"6Æ73Ò'2#äfVGW&R6÷VçCÂ÷FW‡Cà ¢ÇFW‡BƒÒ#C‚"“Ò#s3R"6Æ73Ò'2#äFFv÷fW&ææ6Ræ÷FS¢2ÓSƒ“#c’Wf–FVæ6RæB2ÓCCs#vÆÆWB6×ÆR&R&Wf–WvVB6W&FVÇ’&V6W6RF†R66÷VçB”G2Fòæ÷BÖF6‚ãÂ÷FW‡Cà£Â÷7fsà

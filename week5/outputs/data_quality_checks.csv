@@ -1,0 +1,8 @@
+check,result,note,status
+Evidence file has required columns,True,Evidence table can support a traceable register.,Pass
+Wallet file has required columns,True,Wallet sample can support transaction checks.,Pass
+No duplicate wallet row IDs,True,Duplicate wallet IDs found: 0.,Pass
+Wallet timestamps parse cleanly,True,Unparsed timestamps: 0.,Pass
+Wallet amounts are positive,True,Non-positive amounts: 0.,Pass
+Card deposits include card BIN,True,Card deposits missing BIN: 0.,Pass
+Files should not be joined as one account,True,Evidence case is AC-1589269; wallet import is AC-4471021.,Pass

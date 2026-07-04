@@ -17,6 +17,7 @@ The main audience is CariSurg tutors and clinical or technical reviewers who wan
 - `data/`: placeholder for programme datasets. Real patient data should not be committed here.
 - `week0/`: original Week 0 submission folders and outputs.
 - `week1/`: original Week 1 report folder.
+- `week5/`: FraudShield data profiling, data-quality dashboard, feature shortlist, and final feasibility memo.
 
 ## Week 0
 
@@ -39,9 +40,18 @@ Week 1 focuses on research fundamentals and a preliminary proposal direction for
 - `docs/week1_interim_ai_triage_memo.md`: Markdown copy of the interim memo.
 - `docs/week1_final_ai_triage_proposal.md`: Week 2-updated proposal with eight papers and DOI-checked references.
 
+## Week 5
+
+Week 5 focuses on FraudShield data profiling and feasibility. The final submission is in `week5/`.
+
+- `week5/notebooks/week5_final_fraudshield_profile.ipynb`: final exploration notebook.
+- `week5/outputs/week5_data_quality_dashboard.svg`: data-quality dashboard.
+- `week5/reports/top10_feature_shortlist.csv`: top-10 feature shortlist with reviewer reasoning.
+- `week5/reports/week5_final_feasibility_memo.md`: final feasibility memo.
+
 ## Setup
 
-The Week 0 notebooks use Python 3 with pandas, numpy, and matplotlib.
+The notebooks use Python 3 with pandas, numpy, and matplotlib.
 
 ```bash
 python -m venv .venv
@@ -53,7 +63,7 @@ If you are using Google Colab, upload or mount the dataset in the path expected 
 
 ## Data Note
 
-The Week 0 dataset is a reduced, de-identified triage dataset provided for the programme. This repo does not include real patient data, credentials, API keys, or private clinical records.
+The Week 0 dataset is a reduced, de-identified triage dataset provided for the programme. Week 5 uses the provided FraudShield sample files. This repo does not include real patient data, credentials, API keys, or private clinical records.
 
 ## Contact
 

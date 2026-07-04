@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
+<style>
+text { font-family: Arial, sans-serif; fill:#111; }
+.title { font-size:24px; font-weight:700; }
+.h { font-size:16px; font-weight:700; }
+.t { font-size:12px; }
+.s { font-size:10px; fill:#444; }
+.axis { stroke:#333; stroke-width:1; }
+.grid { stroke:#ddd; stroke-width:1; }
+.bar { fill:#8c4a2f; }
+.dark { fill:#333333; }
+.grey { fill:#777777; }
+</style>
+<rect width="1100" height="520" fill="white"/>
+<text x="550.0" y="30" text-anchor="middle" class="title">Demographic Fields for Subgroup Review</text>
+
+<text x="80" y="70" class="h">Race</text>
+<text x="302" y="103" text-anchor="end" class="t">White or Caucasian</text>
+<rect x="310" y="90" width="300.0" height="14" class="dark"/>
+<text x="615.0" y="102" class="s">29,435</text>
+<text x="302" y="131" text-anchor="end" class="t">Black or African American</text>
+<rect x="310" y="118" width="162.7" height="14" class="dark"/>
+<text x="477.6940716833701" y="130" class="s">15,963</text>
+<text x="302" y="159" text-anchor="end" class="t">Other</text>
+<rect x="310" y="146" width="91.9" height="14" class="dark"/>
+<text x="406.8906064209275" y="158" class="s">9,016</text>
+<text x="302" y="187" text-anchor="end" class="t">Patient Refused</text>
+<rect x="310" y="174" width="3.8" height="14" class="dark"/>
+<text x="318.77102089349415" y="186" class="s">370</text>
+<text x="302" y="215" text-anchor="end" class="t">Asian</text>
+<rect x="310" y="202" width="1.8" height="14" class="dark"/>
+<text x="316.78359096313915" y="214" class="s">175</text>
+<text x="302" y="243" text-anchor="end" class="t">Unknown</text>
+<rect x="310" y="230" width="0.8" height="14" class="dark"/>
+<text x="315.7745880754204" y="242" class="s">76</text>
+<text x="302" y="271" text-anchor="end" class="t">American Indian or Alaska Native</text>
+<rect x="310" y="258" width="0.7" height="14" class="dark"/>
+<text x="315.67266859181245" y="270" class="s">66</text>
+<text x="680" y="70" class="h">Ethnicity</text>
+<text x="842" y="103" text-anchor="end" class="t">Non-Hispanic</text>
+<rect x="850" y="90" width="180.0" height="14" class="bar"/>
+<text x="1035.0" y="102" class="s">45,142</text>
+<text x="842" y="137" text-anchor="end" class="t">Hispanic or Latino</text>
+<rect x="850" y="124" width="39.4" height="14" class="bar"/>
+<text x="894.4275840680519" y="136" class="s">9,888</text>
+<text x="842" y="171" text-anchor="end" class="t">Patient Refused</text>
+<rect x="850" y="158" width="0.2" height="14" class="bar"/>
+<text x="855.2232953790262" y="170" class="s">56</text>
+<text x="842" y="205" text-anchor="end" class="t">Unknown</text>
+<rect x="850" y="192" width="0.1" height="14" class="bar"/>
+<text x="855.1395596118914" y="204" class="s">35</text>
+<text x="550" y="495" text-anchor="middle" class="s">These fields should be used for subgroup evaluation, not automatic triage decisions.</text></svg>

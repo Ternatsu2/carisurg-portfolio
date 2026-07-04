@@ -1,0 +1,12 @@
+check,affected_rows,affected_percent,note
+Rows in dataset,55121,100.0,Each row represents one ED visit in the reduced Week 5 file.
+Columns in dataset,225,0.408,"The file contains demographics, arrival details, triage vitals, glucose, and one-hot chief complaint fields."
+Missing ESI target,0,0.0,The target is complete in this reduced file.
+Duplicate rows after index drop,0,0.0,Duplicates would need review before model training.
+Heart rate outside 40-220 bpm,22,0.04,"Flag for clinical review, not automatic removal."
+Systolic BP outside 70-250 mmHg,50,0.091,"Flag for clinical review, not automatic removal."
+Diastolic BP outside 30-150 mmHg,28,0.051,"Flag for clinical review, not automatic removal."
+Respiratory rate outside 8-40 breaths/min,14,0.025,"Flag for clinical review, not automatic removal."
+Oxygen saturation outside 70-100 percent,7,0.013,"Flag for clinical review, not automatic removal."
+Temperature outside 94-106 F,6,0.011,"Flag for clinical review, not automatic removal."
+Glucose outside 40-500 mg/dL,403,0.731,"Flag for clinical review, not automatic removal."

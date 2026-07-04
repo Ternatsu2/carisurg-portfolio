@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520">
+<style>
+text { font-family: Arial, sans-serif; fill:#111; }
+.title { font-size:24px; font-weight:700; }
+.h { font-size:16px; font-weight:700; }
+.t { font-size:12px; }
+.s { font-size:10px; fill:#444; }
+.axis { stroke:#333; stroke-width:1; }
+.grid { stroke:#ddd; stroke-width:1; }
+.bar { fill:#8c4a2f; }
+.dark { fill:#333333; }
+.grey { fill:#777777; }
+</style>
+<rect width="980" height="520" fill="white"/>
+<text x="490.0" y="30" text-anchor="middle" class="title">Top Chief Complaint Flags</text>
+
+<text x="252" y="83" text-anchor="end" class="t">abdominalpain</text>
+<rect x="260" y="70" width="450.0" height="14" class="dark"/>
+<text x="715.0" y="82" class="s">6,717</text>
+<text x="252" y="115" text-anchor="end" class="t">other</text>
+<rect x="260" y="102" width="300.9" height="14" class="dark"/>
+<text x="565.870924519875" y="114" class="s">4,491</text>
+<text x="252" y="147" text-anchor="end" class="t">chestpain</text>
+<rect x="260" y="134" width="248.7" height="14" class="dark"/>
+<text x="513.6824475212148" y="146" class="s">3,712</text>
+<text x="252" y="179" text-anchor="end" class="t">shortnessofbreath</text>
+<rect x="260" y="166" width="207.5" height="14" class="dark"/>
+<text x="472.54801250558285" y="178" class="s">3,098</text>
+<text x="252" y="211" text-anchor="end" class="t">backpain</text>
+<rect x="260" y="198" width="133.8" height="14" class="dark"/>
+<text x="398.78740509155875" y="210" class="s">1,997</text>
+<text x="252" y="243" text-anchor="end" class="t">fall</text>
+<rect x="260" y="230" width="129.0" height="14" class="dark"/>
+<text x="394.0308173291648" y="242" class="s">1,926</text>
+<text x="252" y="275" text-anchor="end" class="t">cough</text>
+<rect x="260" y="262" width="96.4" height="14" class="dark"/>
+<text x="361.40464493077263" y="274" class="s">1,439</text>
+<text x="252" y="307" text-anchor="end" class="t">dizziness</text>
+<rect x="260" y="294" width="86.6" height="14" class="dark"/>
+<text x="351.55649843680214" y="306" class="s">1,292</text>
+<text x="252" y="339" text-anchor="end" class="t">legpain</text>
+<rect x="260" y="326" width="84.7" height="14" class="dark"/>
+<text x="349.68066100937915" y="338" class="s">1,264</text>
+<text x="252" y="371" text-anchor="end" class="t">emesis</text>
+<rect x="260" y="358" width="83.7" height="14" class="dark"/>
+<text x="348.6757481018312" y="370" class="s">1,249</text>
+<text x="252" y="403" text-anchor="end" class="t">weakness</text>
+<rect x="260" y="390" width="70.6" height="14" class="dark"/>
+<text x="335.61188030370704" y="402" class="s">1,054</text>
+<text x="252" y="435" text-anchor="end" class="t">flankpain</text>
+<rect x="260" y="422" width="70.3" height="14" class="dark"/>
+<text x="335.3439035283609" y="434" class="s">1,050</text>
+<text x="490" y="495" text-anchor="middle" class="s">Counts are one-hot chief complaint flags, not free-text notes.</text></svg>

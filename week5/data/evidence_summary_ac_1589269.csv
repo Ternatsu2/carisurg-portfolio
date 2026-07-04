@@ -1,7 +1,0 @@
-evidence_id,source,detail,use,account_id,risk_score
-ev-account-status,accounts,Under Review,Account status and workflow state,AC-1589269,62
-ev-wallet-summary,wallet_transactions,501 deposits totaling 30577.94; 174 withdrawals totaling 19035.22.,Evidence supporting risk assessment,AC-1589269,62
-ev-cash-movement,wallet_transactions,163 withdrawals occurred within 24 hours of the previous deposit; withdrawals equal about 62% of deposits.,Evidence supporting risk assessment,AC-1589269,62
-ev-shared-device,geolocation_events,0 other accounts share the target account's device UUID.,Evidence supporting risk assessment,AC-1589269,62
-ev-geo-summary,geolocation_events,"5 devices, 277 IP addresses, and 7 cities appear in the sampled geolocation data.",Evidence supporting risk assessment,AC-1589269,62
-ev-betting-summary,bets,19936 bets with 313143.36 total stake and 0 rejected wager.,Evidence supporting risk assessment,AC-1589269,62

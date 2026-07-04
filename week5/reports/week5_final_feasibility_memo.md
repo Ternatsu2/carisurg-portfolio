@@ -1,63 +1,74 @@
-# Week 5 Final Feasibility Memo: FraudShield Reviewer Triage
+# Week 5 Final Feasibility Memo: AI-Assisted Emergency Triage
 
 Student: Terry Benjamin Jr.  
-Case pack: FraudShield AC-1589269 evidence summary and AC-4471021 wallet import sample  
-Submission date: 4 July 2026
+Programme: CariSurg MedTech Pathways  
+Dataset: yaleemmlc_admissionprediction_triage.csv  
+Date: 4 July 2026
 
-## 1. Project Question
+## One-Sentence Verdict
 
-Can the provided FraudShield files support a reviewer-facing fraud triage workflow that profiles case evidence, checks data quality, shortlists useful features, and gives an analyst enough context to decide whether enhanced KYC or source-of-funds review is needed?
+The Week 5 triage dataset is strong enough to support a first baseline triage-support model, but I would not treat it as deployment-ready until the team checks class imbalance, range flags, and subgroup performance.
 
-## 2. Data Reviewed
+## Dataset Summary
 
-I reviewed two files. The evidence summary belongs to case AC-1589269 and contains six evidence records covering account status, wallet activity, cash movement, device and location behaviour, and betting activity. The wallet import sample belongs to AC-4471021 and contains five transaction rows with deposits, withdrawals, payment brand, card BIN, amount, and chargeback-linked fields.
+I used the TenX Week 5 CSV file and treated "esi" as the triage level target. The file contains 55,121 ED visits and 225 usable columns after removing the exported index column. The features cover demographics, arrival details, triage vital signs, glucose, and 200 chief complaint flags.
 
-The account IDs do not match, so I treated the wallet import as a separate sample. Joining it directly to AC-1589269 would create a bad data link. That matters because a reviewer tool should preserve evidence traceability instead of making the case look stronger than it really is.
+The target is complete in this reduced file. The ESI distribution is uneven: ESI 1 accounts for 0.14% of visits, ESI 2 for 32.52%, ESI 3 for 49.00%, ESI 4 for 16.14%, and ESI 5 for 2.20%. Most records sit in the middle-acuity groups, which matches ED triage work but creates a modelling risk for the rare extremes.
 
-## 3. Exploration Summary
+The data also includes race and ethnicity fields, so a later model can be checked for subgroup performance. Those fields should support fairness review, not automatic triage decisions.
 
-The evidence summary is small but useful. It shows that AC-1589269 is under review, has 501 deposits totalling 30,577.94, 174 withdrawals totalling 19,035.22, and 163 withdrawals within 24 hours of a previous deposit. It also records five devices, 277 IP addresses, seven cities, and 19,936 bets with 313,143.36 total stake.
+## Top Three Data Quality Concerns
 
-The wallet import sample is too small to model from, but it is still useful for data-quality checks. It has no duplicate wallet row IDs, all timestamps parsed, all transaction amounts were positive, and card deposits had card BIN values present. The two missing card BIN values were both on ACH withdrawals, where a card BIN is not expected.
+1. Class imbalance needs attention. The dataset has only 77 ESI 1 visits and 1214 ESI 5 visits. A model could perform well on average while doing poorly for the most urgent or least urgent classes.
 
-## 4. Data Quality Dashboard Findings
+2. Some vital and glucose values need clinical review before modelling. I flagged 530 rows across the range checks. Most flags are rare, but glucose has 403 values outside 40 to 500 mg/dL. Some may represent true clinical extremes, while others may be data-entry or unit issues.
 
-The final dashboard checks four things:
+3. Chief complaint data is useful but uneven. "cc_abdominalpain" appears in 6,717 visits, while many complaint flags are rare. The broad "cc_other" field also appears often, so the team should avoid letting vague complaint buckets carry too much weight.
 
-- Missingness by file and field.
-- Wallet activity over time in the sample import.
-- Evidence source coverage across the case summary.
-- Feature readiness for the top-10 shortlist.
+## Top Three Reasons to Proceed
 
-The main data-quality finding is not simple missingness. It is data context. A blank card BIN is acceptable for an ACH withdrawal, but it would be a problem for a card deposit. The larger gap is that important review tables are not present, including a separate chargeback or dispute table, withdrawal destination details, KYC documents, source-of-funds documents, and customer correspondence.
+1. The file has enough scale for baseline modelling. With 55,121 visits and a complete target, Week 6 can build a train/test split without fighting missing labels.
 
-## 5. Top-10 Feature Shortlist
+2. The features are available at or near triage. Age, arrival mode, vital signs, glucose, and chief complaints fit the information a triage workflow can reasonably use.
 
-| Feature | Source | Current support | Why it matters |
-|---|---|---|---|
-| account_status_under_review | Evidence summary | Ready now | Sets the review queue and keeps the case from being treated as normal traffic. |
-| kyc_status_unknown | Analyst note | Needs structured KYC field | Unknown KYC status changes the reviewer action from payout release to enhanced identity review. |
-| risk_score | Analyst note | Ready for display, not enough for training | A 62 out of 100 score gives a case-level prior, but it still needs evidence-level reasons. |
-| deposit_total | Evidence summary | Ready now | High funding volume can trigger source-of-funds review. |
-| withdrawal_total | Evidence summary | Ready now | High payout movement creates exposure if the account later fails review. |
-| withdrawal_to_deposit_ratio | Evidence summary | Ready now | A 62 percent withdrawal-to-deposit ratio shows cash-out pressure. |
-| fast_withdrawals_24h | Evidence summary | Ready now | Withdrawals soon after deposits are one of the clearest review triggers in this pack. |
-| payment_instrument_pattern | Wallet import | Prototype only | Repeated card BINs, ACH withdrawals, and chargeback-linked deposits help a reviewer inspect funding behaviour. |
-| device_ip_city_spread | Evidence summary | Ready now | Five devices, 277 IPs, and seven cities may point to access churn, proxy use, travel, or account sharing. |
-| betting_volume_and_rejected_wagers | Evidence summary | Ready now | Bet count, total stake, and rejected wagers help compare payment behaviour with platform usage. |
+3. The first signal checks make clinical sense. Age, oxygen saturation, chest pain, shortness of breath, suicidal ideation, altered mental status, respiratory rate, and heart rate all show measurable association with ESI. None of these signals should decide triage alone, but they are reasonable inputs for decision support.
 
-## 6. Feasibility Decision
+## Top-10 Feature Shortlist
 
-This case pack can support a narrow reviewer-facing prototype. A useful first version would show a case profile, evidence IDs, a data-quality panel, the top feature signals, and a short reviewer note explaining why enhanced KYC or source-of-funds review is reasonable.
+| Rank | Feature | ESI Correlation | Direction | Reason |
+|---:|---|---:|---|---|
+| 1 | age | -0.2366 | Lower ESI, more urgent | Older adults often receive higher-acuity review because frailty, comorbidity, and atypical symptoms can change risk. |
+| 2 | triage_vital_o2 | 0.1779 | Higher ESI, less urgent | Low oxygen saturation can point to respiratory compromise and can move a patient toward faster assessment. |
+| 3 | cc_chestpain | -0.1643 | Lower ESI, more urgent | Chest pain needs rapid triage because myocardial infarction and other time-sensitive diagnoses must stay on the table. |
+| 4 | cc_shortnessofbreath | -0.1503 | Lower ESI, more urgent | Shortness of breath can reflect asthma, heart failure, pulmonary embolism, infection, or other urgent problems. |
+| 5 | cc_suicidal | -0.1426 | Lower ESI, more urgent | Suicidal ideation changes safety planning and disposition even when vital signs look stable. |
+| 6 | cc_alcoholintoxication | -0.1421 | Lower ESI, more urgent | Intoxication can mask trauma, hypoglycaemia, overdose, or reduced consciousness. |
+| 7 | cc_alteredmentalstatus | -0.1320 | Lower ESI, more urgent | Altered mental status is a high-risk complaint because the patient may not give a reliable history. |
+| 8 | triage_vital_rr | -0.0953 | Lower ESI, more urgent | Respiratory rate is a simple bedside marker for respiratory distress, sepsis, pain, and compensation. |
+| 9 | triage_vital_hr | -0.0952 | Lower ESI, more urgent | Heart rate helps flag shock, pain, fever, arrhythmia, dehydration, and anxiety, but it needs clinical context. |
+| 10 | triage_glucose | -0.0778 | Lower ESI, more urgent | Very low or very high glucose can change triage priority and may explain confusion or weakness. |
 
-It cannot support reliable model training yet. There is only one case summary and a five-row wallet sample, the wallet sample belongs to a different account, there are no confirmed fraud or non-fraud labels, and several important review tables are missing. A model built from this alone would not be defensible.
 
-## 7. Safety and Reviewer Framing
+## Supporting Plots and Tables
 
-I would treat the tool as decision support. The clinical parallel is triage: flag urgency and uncertainty, then leave the final decision to a trained reviewer. It should organise the evidence, show what is missing, and help the analyst move faster. It should not approve, restrict, or clear an account by itself.
+The repository includes the following Week 5 outputs:
 
-The reviewer should always see the reason behind a flag and the data gap behind a weak recommendation. For this case, the strongest defensible action is not an automatic fraud decision. It is escalation for enhanced KYC and source-of-funds review before clearing payout activity.
+- "docs/week5_data_quality_dashboard.svg"
+- "docs/week5_missingness_summary.svg"
+- "docs/week5_feature_signal_summary.svg"
+- "docs/week5_chief_complaint_distribution.svg"
+- "docs/week5_demographics_review.svg"
+- "docs/week5_top10_feature_shortlist.csv"
+- "docs/week5_data_quality_checks.csv"
 
-## 8. Next Build Step
+## Caveats for the ED Board
 
-The next step would be to load more cases with consistent account IDs, raw wallet transactions, chargeback or dispute outcomes, KYC status, withdrawal destination details, and final analyst decisions. With those fields in place, the project could move from a case-review dashboard into a measurable triage model.
+This dataset supports a feasibility decision, not a clinical launch decision. Before anyone uses a model from it, the team should define the exact triage task, remove leakage fields, confirm the ESI direction with clinicians, and test performance by ESI class, race, ethnicity, age group, and arrival mode.
+
+I would build the Week 6 baseline as a transparent classifier first. Logistic regression or a shallow decision tree would make sense before trying a larger model. The first pass should report confusion matrix results by ESI class, not only one overall accuracy score.
+
+## References
+
+Hong, W. S., Haimovich, A. D., & Taylor, R. A. (2018). Predicting hospital admission at emergency department triage using machine learning. PLOS ONE, 13(7), e0201016. https://doi.org/10.1371/journal.pone.0201016
+
+CariSurg MedTech Pathways. (2026). Week 5: AI-Assisted Triage: Data Exploration. TenX Week 5 module and dataset.

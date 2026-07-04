@@ -1,0 +1,18 @@
+{
+  "rows": 55121,
+  "columns": 225,
+  "chief_complaint_columns": 200,
+  "esi_percent": {
+    "1.0": 0.14,
+    "2.0": 32.52,
+    "3.0": 49.0,
+    "4.0": 16.14,
+    "5.0": 2.2
+  },
+  "range_flags_total": 530,
+  "top_complaint": {
+    "chief_complaint": "cc_abdominalpain",
+    "visit_count": 6717.0,
+    "visit_percent": 12.185918252571614
+  }
+}

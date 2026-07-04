@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260">
+<style>
+text { font-family: Arial, sans-serif; fill:#111; }
+.title { font-size:24px; font-weight:700; }
+.h { font-size:16px; font-weight:700; }
+.t { font-size:12px; }
+.s { font-size:10px; fill:#444; }
+.axis { stroke:#333; stroke-width:1; }
+.grid { stroke:#ddd; stroke-width:1; }
+.bar { fill:#8c4a2f; }
+.dark { fill:#333333; }
+.grey { fill:#777777; }
+</style>
+<rect width="900" height="260" fill="white"/>
+<text x="450.0" y="30" text-anchor="middle" class="title">Week 5 Missingness Check</text>
+
+<text x="80" y="86" class="h">Result</text>
+<text x="80" y="120" class="t">All 225 usable columns in the reduced Week 5 file have 0 missing values.</text>
+<text x="80" y="152" class="t">The remaining data-quality work is range review, class balance, and subgroup review.</text>
+<line x1="80" y1="188" x2="820" y2="188" class="axis"/>
+<rect x="80" y="205" width="4" height="16" class="grey"/><text x="92" y="218" class="s">0% missing across included fields</text></svg>

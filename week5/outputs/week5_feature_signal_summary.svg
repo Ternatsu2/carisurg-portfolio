@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="470" viewBox="0 0 980 470">
+<style>
+text { font-family: Arial, sans-serif; fill:#111; }
+.title { font-size:24px; font-weight:700; }
+.h { font-size:16px; font-weight:700; }
+.t { font-size:12px; }
+.s { font-size:10px; fill:#444; }
+.axis { stroke:#333; stroke-width:1; }
+.grid { stroke:#ddd; stroke-width:1; }
+.bar { fill:#8c4a2f; }
+.dark { fill:#333333; }
+.grey { fill:#777777; }
+</style>
+<rect width="980" height="470" fill="white"/>
+<text x="490.0" y="30" text-anchor="middle" class="title">Top-10 Feature Signal Summary</text>
+
+<text x="272" y="83" text-anchor="end" class="t">age</text>
+<rect x="280" y="70" width="430.0" height="14" class="bar"/>
+<text x="715.0" y="82" class="s">2,366</text>
+<text x="272" y="117" text-anchor="end" class="t">triage_vital_o2</text>
+<rect x="280" y="104" width="323.3" height="14" class="bar"/>
+<text x="608.3178360101438" y="116" class="s">1,779</text>
+<text x="272" y="151" text-anchor="end" class="t">cc_chestpain</text>
+<rect x="280" y="138" width="298.6" height="14" class="bar"/>
+<text x="583.6010143702451" y="150" class="s">1,643</text>
+<text x="272" y="185" text-anchor="end" class="t">cc_shortnessofbreath</text>
+<rect x="280" y="172" width="273.2" height="14" class="bar"/>
+<text x="558.1572273879966" y="184" class="s">1,503</text>
+<text x="272" y="219" text-anchor="end" class="t">cc_suicidal</text>
+<rect x="280" y="206" width="259.2" height="14" class="bar"/>
+<text x="544.1631445477599" y="218" class="s">1,426</text>
+<text x="272" y="253" text-anchor="end" class="t">cc_alcoholintoxication</text>
+<rect x="280" y="240" width="258.3" height="14" class="bar"/>
+<text x="543.2544378698225" y="252" class="s">1,421</text>
+<text x="272" y="287" text-anchor="end" class="t">cc_alteredmentalstatus</text>
+<rect x="280" y="274" width="239.9" height="14" class="bar"/>
+<text x="524.8985629754861" y="286" class="s">1,320</text>
+<text x="272" y="321" text-anchor="end" class="t">triage_vital_rr</text>
+<rect x="280" y="308" width="173.2" height="14" class="bar"/>
+<text x="458.19949281487743" y="320" class="s">953</text>
+<text x="272" y="355" text-anchor="end" class="t">triage_vital_hr</text>
+<rect x="280" y="342" width="173.0" height="14" class="bar"/>
+<text x="458.0177514792899" y="354" class="s">952</text>
+<text x="272" y="389" text-anchor="end" class="t">triage_glucose</text>
+<rect x="280" y="376" width="141.4" height="14" class="bar"/>
+<text x="426.39475908706675" y="388" class="s">778</text>
+<text x="495" y="445" text-anchor="middle" class="s">Bar length uses absolute ESI correlation. Lower ESI means more urgent.</text></svg>

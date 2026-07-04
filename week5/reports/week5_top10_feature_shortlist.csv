@@ -1,0 +1,11 @@
+rank,feature,correlation_with_esi,direction_note,present_percent,clinical_reason
+1,age,-0.2366,"Lower ESI, more urgent",100.0,"Older adults often receive higher-acuity review because frailty, comorbidity, and atypical symptoms can change risk."
+2,triage_vital_o2,0.1779,"Higher ESI, less urgent",100.0,Low oxygen saturation can point to respiratory compromise and can move a patient toward faster assessment.
+3,cc_chestpain,-0.1643,"Lower ESI, more urgent",100.0,Chest pain needs rapid triage because myocardial infarction and other time-sensitive diagnoses must stay on the table.
+4,cc_shortnessofbreath,-0.1503,"Lower ESI, more urgent",100.0,"Shortness of breath can reflect asthma, heart failure, pulmonary embolism, infection, or other urgent problems."
+5,cc_suicidal,-0.1426,"Lower ESI, more urgent",100.0,Suicidal ideation changes safety planning and disposition even when vital signs look stable.
+6,cc_alcoholintoxication,-0.1421,"Lower ESI, more urgent",100.0,"Intoxication can mask trauma, hypoglycaemia, overdose, or reduced consciousness."
+7,cc_alteredmentalstatus,-0.132,"Lower ESI, more urgent",100.0,Altered mental status is a high-risk complaint because the patient may not give a reliable history.
+8,triage_vital_rr,-0.0953,"Lower ESI, more urgent",100.0,"Respiratory rate is a simple bedside marker for respiratory distress, sepsis, pain, and compensation."
+9,triage_vital_hr,-0.0952,"Lower ESI, more urgent",100.0,"Heart rate helps flag shock, pain, fever, arrhythmia, dehydration, and anxiety, but it needs clinical context."
+10,triage_glucose,-0.0778,"Lower ESI, more urgent",100.0,Very low or very high glucose can change triage priority and may explain confusion or weakness.

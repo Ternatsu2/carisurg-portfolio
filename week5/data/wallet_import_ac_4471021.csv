@@ -1,6 +1,0 @@
-id,account_id,timestamp,type,amount,payment_brand,extra_details,card_bin,chargeback_linked
-w-import-4471021-001,AC-4471021,2026-06-20T09:12:00-04:00,DEPOSIT,4800,Visa,"Card ending 7712; high-velocity funding test row",414720,true
-w-import-4471021-002,AC-4471021,2026-06-20T09:39:00-04:00,DEPOSIT,4750,Visa,"Card ending 7712; repeated BIN after first deposit",414720,true
-w-import-4471021-003,AC-4471021,2026-06-20T10:03:00-04:00,WITHDRAWAL,6100,ACH,"External bank transfer soon after deposits",,false
-w-import-4471021-004,AC-4471021,2026-06-20T10:27:00-04:00,DEPOSIT,950,Mastercard,"Card ending 2210; new payment instrument",552233,false
-w-import-4471021-005,AC-4471021,2026-06-20T11:05:00-04:00,WITHDRAWAL,1800,ACH,"Second withdrawal after same-day deposits",,false

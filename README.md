@@ -4,50 +4,31 @@ Portfolio work for the CariSurg MedTech Pathways Healthcare AI programme.
 
 ## What This Is
 
-This repository collects my CariSurg technical work, starting with emergency triage data cleaning, visualisation, and research writing. My project direction is clinician-facing support for emergency triage, with the final decision kept with the nurse or clinician.
+This repository collects my CariSurg technical work, starting with emergency triage data cleaning, visualisation, and research writing. The project direction is clinician-facing support for emergency triage, with the final decision kept with the nurse or clinician.
 
 ## Who It Is For
 
 The main audience is CariSurg tutors and clinical or technical reviewers who want to see the work behind my submissions without digging through separate files. It should also be readable for someone reviewing my healthcare AI portfolio later.
 
+## Current Week 5 Submission
+
+The Week 5 final submission is the AI-assisted triage data exploration package:
+
+- `notebooks/week5_final_triage_profile.ipynb`: full exploration notebook.
+- `docs/week5_feasibility_memo.md`: feasibility memo for the ED Board.
+- `docs/week5_top10_feature_shortlist.csv`: ranked feature shortlist.
+- `docs/week5_data_quality_dashboard.svg`: four-plot data quality dashboard.
+- `docs/week5_missingness_summary.csv`: missingness table.
+- `week5/`: mirrored Week 5 folder with sample data, schema, reports, and plots.
+
 ## Repository Layout
 
-- `notebooks/`: cleaned Week 0 notebook copies for the portfolio.
-- `docs/`: Week 1 memo, the Week 2-updated proposal, and the reference library.
-- `data/`: placeholder for programme datasets. Real patient data should not be committed here.
-- `week0/`: original Week 0 submission folders and outputs.
-- `week1/`: original Week 1 report folder.
-- `week5/`: FraudShield data profiling, data-quality dashboard, feature shortlist, and final feasibility memo.
-
-## Week 0
-
-Week 0 covered onboarding, data cleaning, basic visualisation, and rule-based triage logic.
-
-- `week0/notebooks/day1_clean_gender.ipynb`: cleaned the "Gender" column and checked the mapped values.
-- `week0/notebooks/day2_clean_pulse.ipynb`: cleaned GCS, SBP, Temp, and Pulse, then checked the final Pulse range.
-- `week0/notebooks/day3_visualization.ipynb`: made a Pulse histogram and an Age vs Pulse scatter plot.
-- `week0/reports/assignment4_vital_sign_description.pdf`: short write-up on Pulse as a triage vital sign.
-- `week0/reports/assignment5_unconsidered_metrics.pdf`: short write-up on SpO2 as an extra triage measure.
-- `week0/reports/assignment6_triage_pseudocode.pdf`: pseudocode for a rule-based digital triage screen.
-
-The Day 3 plot images are saved in `week0/outputs/plots`.
-
-## Week 1
-
-Week 1 focuses on research fundamentals and a preliminary proposal direction for AI-assisted emergency triage.
-
-- `week1/reports/week1_interim_ai_triage_memo.pdf`: interim memo with paper summaries and a draft problem statement.
-- `docs/week1_interim_ai_triage_memo.md`: Markdown copy of the interim memo.
-- `docs/week1_final_ai_triage_proposal.md`: Week 2-updated proposal with eight papers and DOI-checked references.
-
-## Week 5
-
-Week 5 focuses on FraudShield data profiling and feasibility. The final submission is in `week5/`.
-
-- `week5/notebooks/week5_final_fraudshield_profile.ipynb`: final exploration notebook.
-- `week5/outputs/week5_data_quality_dashboard.svg`: data-quality dashboard.
-- `week5/reports/top10_feature_shortlist.csv`: top-10 feature shortlist with reviewer reasoning.
-- `week5/reports/week5_final_feasibility_memo.md`: final feasibility memo.
+- `notebooks/`: Jupyter notebooks for the technical work.
+- `docs/`: memos, reports, plots, and supporting tables.
+- `data/`: placeholder folder for small programme data files. Real patient data should not be committed here.
+- `week0/`: original Week 0 submission folders and report outputs.
+- `week1/`: original Week 1 submission folders.
+- `week5/`: Week 5 triage data exploration and feasibility package.
 
 ## Setup
 
@@ -63,7 +44,7 @@ If you are using Google Colab, upload or mount the dataset in the path expected 
 
 ## Data Note
 
-The Week 0 dataset is a reduced, de-identified triage dataset provided for the programme. Week 5 uses the provided FraudShield sample files. This repo does not include real patient data, credentials, API keys, or private clinical records.
+The Week 5 analysis used the TenX file `yaleemmlc_admissionprediction_triage.csv`. I did not commit the full CSV because it is a large clinical dataset. The repo includes a sample and schema under `week5/data/` so reviewers can inspect the structure without storing the full file here.
 
 ## Contact
 

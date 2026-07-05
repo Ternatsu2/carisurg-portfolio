@@ -1,47 +1,40 @@
-# Week 5 Interim Feasibility Memo Outline
+# Week 5 Interim Feasibility Memo Outline: AI-Assisted Emergency Triage
 
 Student: Terry Benjamin Jr.  
-Case pack: FraudShield AI, AC-1589269 and AC-4471021
+Programme: CariSurg MedTech Pathways  
+Dataset: yaleemmlc_admissionprediction_triage.csv  
+Date: 4 July 2026
 
-## 1. Working Question
+## Working Question
 
-Can a small fraud review dataset support a first-pass analyst workflow that profiles account risk evidence, highlights missing fields, and points reviewers toward cases that need enhanced KYC or source-of-funds review?
+Can the Week 5 ED triage dataset support a first baseline triage-support model that helps a triage nurse or clinician review likely acuity without replacing clinical judgement?
 
-## 2. Data Reviewed
+## Data Reviewed
 
-I reviewed two provided files:
+I used the TenX Week 5 CSV file and treated "esi" as the triage level target. The file contains 55,121 ED visits and 225 usable columns after removing the exported index column. The features cover demographics, arrival details, triage vital signs, glucose, and 200 chief complaint flags.
 
-- Evidence summary for account AC-1589269, with six evidence records tied to risk score, account status, wallet activity, geolocation activity, and betting activity.
-- Wallet import sample for account AC-4471021, with five transaction rows covering deposits and withdrawals.
+The target is complete in this reduced file. The ESI distribution is uneven: ESI 1 accounts for 0.14% of visits, ESI 2 for 32.52%, ESI 3 for 49.00%, ESI 4 for 16.14%, and ESI 5 for 2.20%. Most records sit in the middle-acuity groups, which matches ED triage work but creates a modelling risk for the rare extremes.
 
-The evidence summary has no missing fields. The wallet import sample has two missing card BIN values, both on ACH withdrawal rows. I treated those as expected missingness for that payment type, not as a failed data entry issue.
+## Initial Profiling Checks
 
-## 3. Early Feasibility Read
+I checked row and column counts, duplicate rows, ESI target completeness, ESI class balance, missing values, and basic clinical ranges for triage vital signs. The reduced file has no missing values in the included columns. That makes the data easier to profile, but it does not remove the need for clinical review.
 
-The dataset can support a narrow interim prototype. A reviewer could use it to check whether each case has enough structured evidence for a fraud review note, identify fields that need follow-up, and separate expected missingness from missingness that blocks a decision.
+## Missingness and Data Quality Read
 
-The evidence summary already contains useful case-level signals: account status, risk score, wallet activity, geolocation spread, and betting activity. The wallet import file adds transaction-level detail, but the sample is too small for model training or serious benchmarking.
+Missingness is not the main blocker in the reduced file. The bigger issues are class imbalance, rare ESI 1 cases, and clinically questionable range flags. I would flag those values for review before modelling rather than delete them automatically.
 
-## 4. Missingness and Data Quality Risks
+## Early Feasibility Read
 
-The main missingness issue is context-dependent. A blank card BIN on an ACH withdrawal makes sense because ACH does not use a card BIN. A blank card BIN on a card deposit would need follow-up.
+The dataset can support a first baseline triage model because it has scale, a complete ESI target, and features that would be available at or near triage. I would not treat the dataset as deployment-ready until the team checks class-wise error, subgroup performance, and whether flagged values reflect real emergencies or entry/unit problems.
 
-The current case pack also has bigger feasibility gaps:
+## Main Risks To Carry Forward
 
-- No separate chargeback or dispute table is included.
-- Withdrawal destination details are limited.
-- KYC documents, source-of-funds files, and customer messages are not loaded.
+1. Class imbalance needs attention. The dataset has only 77 ESI 1 visits and 1214 ESI 5 visits. A model could perform well on average while doing poorly for the most urgent or least urgent classes.
 
-Those gaps matter because a fraud system should support the analyst, not make a final enforcement decision from partial evidence.
+2. Some vital and glucose values need clinical review before modelling. I flagged 530 rows across the range checks. Most flags are rare, but glucose has 403 values outside 40 to 500 mg/dL. Some may represent true clinical extremes, while others may be data-entry or unit issues.
 
-## 5. Proposed Interim Workflow
+3. Fairness review should be planned early. The dataset includes race and ethnicity fields, which means later work should check whether model errors differ across patient groups.
 
-1. Load the evidence summary and wallet import files.
-2. Check row counts, column types, duplicates, missing values, and key value ranges.
-3. Create a missingness visualisation for both files.
-4. Flag missingness by field and business meaning.
-5. Produce an analyst-facing feasibility note with what the data can support and what still needs human review.
+## Next Steps For The Final Submission
 
-## 6. Next Steps for the Final Submission
-
-For the final Week 5 deliverable, I would expand this into a cleaner feasibility report and notebook. I would also add simple validation rules, such as checking that deposits with card payment brands have card BIN values, withdrawals have plausible amounts, and each evidence row links back to the expected account.
+For the final deliverable, I would add the full exploration notebook, a data-quality dashboard, a top-10 feature shortlist, and a short feasibility memo for the ED Board.

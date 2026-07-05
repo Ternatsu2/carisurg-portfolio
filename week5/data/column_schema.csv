@@ -1,0 +1,26 @@
+feature,dtype,missing_count,missing_percent,role
+esi,float64,0,0.0,target triage level, ESI 1 most urgent and ESI 5 least urgent
+age,float64,0,0.0,demographic feature
+gender,object,0,0.0,demographic field for subgroup review
+ethnicity,object,0,0.0,demographic field for subgroup review
+race,object,0,0.0,demographic field for subgroup review
+arrivalmode,object,0,0.0,arrival context
+arrivalmonth,object,0,0.0,arrival timing
+arrivalday,object,0,0.0,arrival timing
+arrivalhour_bin,object,0,0.0,arrival timing
+previousdispo,object,0,0.0,prior encounter context
+triage_vital_hr,float64,0,0.0,heart rate at triage
+triage_vital_sbp,float64,0,0.0,systolic blood pressure at triage
+triage_vital_dbp,float64,0,0.0,diastolic blood pressure at triage
+triage_vital_rr,float64,0,0.0,respiratory rate at triage
+triage_vital_o2,float64,0,0.0,oxygen saturation at triage
+triage_vital_temp,float64,0,0.0,temperature at triage
+triage_glucose,float64,0,0.0,glucose at triage
+cc_abdominalpain,float64,0,0.0,chief complaint flag
+cc_chestpain,float64,0,0.0,chief complaint flag
+cc_shortnessofbreath,float64,0,0.0,chief complaint flag
+cc_alteredmentalstatus,float64,0,0.0,chief complaint flag
+cc_suicidal,float64,0,0.0,chief complaint flag
+cc_alcoholintoxication,float64,0,0.0,chief complaint flag
+cc_other,float64,0,0.0,broad chief complaint flag
+cc_*,float64,0,0.0,remaining one-hot chief complaint flags

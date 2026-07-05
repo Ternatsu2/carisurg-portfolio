@@ -1,15 +1,15 @@
-# Week 5 Interim: AI-Assisted Triage Data Profile
+# Week 5: AI-Assisted Triage Data Profile
 
-This folder contains my Week 5 interim work for the clinical triage data exploration task. I used the TenX Week 5 triage dataset and focused on the first feasibility checks: dataset structure, missingness, range flags, target balance, and whether the available fields make sense for a baseline triage-support model.
+This folder contains my Week 5 interim triage profiling work. I used the TenX Week 5 triage CSV and focused on whether the data is ready for a first baseline triage-support model.
 
-## Contents
+## Main Files
 
-- "notebooks/week5_interim_data_profile.ipynb": initial profiling notebook.
-- "outputs/missingness_summary.svg": missingness summary visual.
+- "notebooks/week5_interim_data_profile.ipynb": interim profiling notebook.
 - "reports/feasibility_memo_outline.md": interim feasibility memo outline.
+- "outputs/missingness_summary.svg": interim missingness visualisation.
+- "data/column_schema.csv": schema and missingness table.
 - "data/yaleemmlc_triage_sample.csv": small sample for structure review.
-- "data/column_schema.csv": compact schema for key triage fields.
 
 ## Data Note
 
-The full TenX CSV is not committed because it is a large clinical dataset. I kept a small sample and schema in the repo so reviewers can inspect the structure without storing the full file here.
+The full CSV is not committed because it is a large clinical dataset. The notebook expects the full file at the programme data path or a local path supplied by the user.

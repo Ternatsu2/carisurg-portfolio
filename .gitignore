@@ -12,6 +12,8 @@ data/*.csv
 data/*.xlsx
 data/*.parquet
 data/*.json
+**/yaleemmlc_admissionprediction_triage.csv
+**/triage_cleaned_v1.csv
 
 # Large or generated files
 *.log

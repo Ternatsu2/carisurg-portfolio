@@ -21,6 +21,8 @@ The Week 6 interim submission builds reproducible baseline models for the emerge
 
 The notebook uses an 80/20 split stratified on `esi` and a fixed random seed of 42. I treat recall for ESI 1 as the primary safety measure because a false negative in that class could delay immediate intervention.
 
+The weakest result is ESI 1. Logistic regression identified 4 of the 16 ESI 1 visits in the held-out test set and missed 12, most often assigning them ESI 2. That miss rate is the main reason I treat this as an exploratory baseline rather than a clinically usable model.
+
 ## Repository Layout
 
 - `notebooks/`: Jupyter notebooks for the technical work.

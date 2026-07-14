@@ -12,16 +12,18 @@ The main audience is CariSurg tutors and clinical or technical reviewers who wan
 
 ## Current Week 6 Submission
 
-The Week 6 interim submission builds reproducible baseline models for the emergency triage dataset:
+The Week 6 final submission compares reproducible baseline models for the emergency triage dataset:
 
-- `notebooks/week6_interim_baseline_models.ipynb`: dummy, logistic-regression, and depth-5 decision-tree baselines.
-- `docs/w6_initial_metrics.csv`: accuracy, macro F1, weighted F1, and ESI 1 recall.
-- `docs/w6_confusion_logreg.png`: the main interim confusion-matrix artefact.
-- `docs/w6_confusion_tree.png`: an additional comparison for the second baseline.
+- `notebooks/week6_final_baseline_models.ipynb`: stratified dummy, logistic-regression, and depth-5 decision-tree baselines.
+- `docs/week-6-baseline.pdf`: the final report with the benchmark, metric choice, and failure-mode reflection.
+- `docs/w6_final_metrics.csv`: accuracy, macro F1, weighted F1, and ESI 1 recall.
+- `docs/w6_per_class_metrics.csv`: precision, recall, and F1 for each ESI class and both trained models.
+- `docs/w6_confusion_logreg.png` and `docs/w6_confusion_tree.png`: test-set confusion matrices.
+- `docs/week6_clinical_explainer.mp4`: the one-minute clinician-facing explanation.
 
 The notebook uses an 80/20 split stratified on `esi` and a fixed random seed of 42. I treat recall for ESI 1 as the primary safety measure because a false negative in that class could delay immediate intervention.
 
-The weakest result is ESI 1. Logistic regression identified 4 of the 16 ESI 1 visits in the held-out test set and missed 12, most often assigning them ESI 2. That miss rate is the main reason I treat this as an exploratory baseline rather than a clinically usable model.
+The weakest result is ESI 1. Logistic regression identified 4 of the 16 ESI 1 visits in the held-out test set and missed 12, including 11 assigned to ESI 2. That miss rate is the main reason I treat this as an exploratory baseline rather than a clinically usable model.
 
 ## Repository Layout
 
@@ -46,7 +48,7 @@ The full programme CSV is not stored in GitHub. Set its local path before runnin
 
 ```bash
 export CARISURG_TRIAGE_CSV=/path/to/yaleemmlc_admissionprediction_triage.csv
-jupyter notebook notebooks/week6_interim_baseline_models.ipynb
+jupyter notebook notebooks/week6_final_baseline_models.ipynb
 ```
 
 In Google Colab, upload or mount the same CSV, then set `CARISURG_TRIAGE_CSV` to that path.
@@ -59,4 +61,4 @@ The Week 5 and Week 6 analyses use the TenX file `yaleemmlc_admissionprediction_
 
 Terry Benjamin Jr.  
 St. John's, Antigua and Barbuda  
-LinkedIn: <https://www.linkedin.com/in/terry-benjamin-jr-274434116/>
+LinkedIn: <https://www.linkedin.com/in/terry-jr-benjamin-274434116/>

@@ -9,8 +9,12 @@ Week 1 documents:
 
 The Week 2 update expands the proposal to eight papers and keeps the citation records in a BibTeX file so the bibliography is easier to check and regenerate.
 
-Week 6 interim artefacts:
+Week 6 final artefacts:
 
-- `w6_initial_metrics.csv`
+- `week-6-baseline.pdf`
+- `w6_final_metrics.csv`
+- `w6_per_class_metrics.csv`
 - `w6_confusion_logreg.png`
 - `w6_confusion_tree.png`
+- `week6_clinical_explainer.mp4`
+- `week6_clinical_explainer_script.txt`

@@ -11,4 +11,4 @@ These notebooks expect the reduced emergency triage dataset from the programme.
 Week 5 and Week 6 notebooks:
 
 - `week5_final_triage_profile.ipynb`: profiles the full triage dataset and identifies data quality risks.
-- `week6_interim_baseline_models.ipynb`: trains and evaluates the Week 6 baseline classifiers.
+- `week6_final_baseline_models.ipynb`: trains and evaluates the Week 6 baseline classifiers, saves class-level metrics, and links the final report and explainer.

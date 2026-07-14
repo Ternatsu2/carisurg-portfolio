@@ -1,0 +1,7 @@
+This baseline is meant to support the triage nurse when deciding how urgently a patient needs care. It does not replace clinical judgement.
+
+I judged it by one safety question: out of the patients recorded as ESI level 1, how many did the model also place in level 1?
+
+On the held-out test set, logistic regression found four of sixteen. It missed twelve, and eleven of those were placed in level 2. For a patient who needs immediate resuscitation, even that one-level delay could mean waiting longer for the right team and treatment.
+
+The model performed better than the random comparison overall, but the ESI 1 result is not safe enough for use. My next test would address the class imbalance and adjust weighting, then check whether the model catches more critical cases without producing so many false alarms that staff stop trusting it.

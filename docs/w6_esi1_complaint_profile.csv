@@ -1,0 +1,12 @@
+complaint flag,caught,missed,total
+strokealert,5.0,0.0,5.0
+other,0.0,4.0,4.0
+shortnessofbreath,0.0,2.0,2.0
+respiratorydistress,1.0,0.0,1.0
+unresponsive,1.0,0.0,1.0
+alteredmentalstatus,0.0,1.0,1.0
+dizziness,0.0,1.0,1.0
+hypotension,0.0,1.0,1.0
+mass,0.0,1.0,1.0
+neurologicproblem,0.0,1.0,1.0
+poisoning,0.0,1.0,1.0

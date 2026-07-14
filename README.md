@@ -12,18 +12,20 @@ The main audience is CariSurg tutors and clinical or technical reviewers who wan
 
 ## Current Week 6 Submission
 
-The Week 6 final submission compares reproducible baseline models for the emergency triage dataset:
+The Week 6 final submission compares the required baselines and a small training-only tuning pass for the emergency triage dataset:
 
-- `notebooks/week6_final_baseline_models.ipynb`: stratified dummy, logistic-regression, and depth-5 decision-tree baselines.
-- `docs/week-6-baseline.pdf`: the final report with the benchmark, metric choice, and failure-mode reflection.
-- `docs/w6_final_metrics.csv`: accuracy, macro F1, weighted F1, and ESI 1 recall.
-- `docs/w6_per_class_metrics.csv`: precision, recall, and F1 for each ESI class and both trained models.
-- `docs/w6_confusion_logreg.png` and `docs/w6_confusion_tree.png`: test-set confusion matrices.
+- `notebooks/week6_final_baseline_models.ipynb`: baseline models, validation-only tuning, held-out evaluation, and ESI 1 error review.
+- `docs/week-6-baseline.pdf`: the three-page final report with the benchmark, tuning result, metric choice, and failure-mode reflection.
+- `docs/w6_final_metrics.csv`: aggregate scores and ESI 1 alert counts for the dummy, baseline, and tuned models.
+- `docs/w6_per_class_metrics.csv`: precision, recall, and F1 for each ESI class.
+- `docs/w6_tuning_results.csv`: the settings tested on the inner validation split.
+- `docs/w6_esi1_vital_profile.csv` and `docs/w6_esi1_complaint_profile.csv`: aggregate review of the held-out ESI 1 cases.
+- `docs/w6_confusion_logreg_tuned.png` and `docs/w6_confusion_tree_tuned.png`: tuned-model test-set confusion matrices.
 - `docs/week6_clinical_explainer.mp4`: the one-minute clinician-facing explanation.
 
 The notebook uses an 80/20 split stratified on `esi` and a fixed random seed of 42. I treat recall for ESI 1 as the primary safety measure because a false negative in that class could delay immediate intervention.
 
-The weakest result is ESI 1. Logistic regression identified 4 of the 16 ESI 1 visits in the held-out test set and missed 12, including 11 assigned to ESI 2. That miss rate is the main reason I treat this as an exploratory baseline rather than a clinically usable model.
+The original logistic model identified 4 of the 16 ESI 1 visits. After I selected an ESI 1 class weight on an inner validation split, it identified 7 of 16 while test accuracy stayed near 68%. False ESI 1 alerts rose from 4 to 23, so the tuned result is still exploratory rather than clinically usable.
 
 ## Repository Layout
 

@@ -14,7 +14,12 @@ Week 6 final artefacts:
 - `week-6-baseline.pdf`
 - `w6_final_metrics.csv`
 - `w6_per_class_metrics.csv`
+- `w6_tuning_results.csv`
+- `w6_esi1_vital_profile.csv`
+- `w6_esi1_complaint_profile.csv`
 - `w6_confusion_logreg.png`
 - `w6_confusion_tree.png`
+- `w6_confusion_logreg_tuned.png`
+- `w6_confusion_tree_tuned.png`
 - `week6_clinical_explainer.mp4`
 - `week6_clinical_explainer_script.txt`

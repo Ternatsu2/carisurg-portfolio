@@ -23,3 +23,14 @@ Week 6 final artefacts:
 - `w6_confusion_tree_tuned.png`
 - `week6_clinical_explainer.mp4`
 - `week6_clinical_explainer_script.txt`
+
+Week 7 interim artefacts:
+
+- `week7_draft_benchmark.md`
+- `week7_benchmark_metrics.csv`
+- `week7_random_forest_cv_results.csv`
+- `week7_model_comparison.png`
+- `week7_confusion_random_forest.png`
+- `week7_feature_importance.png`
+- `week7_feature_importance.csv`
+- `week7_esi1_vital_profile.csv`

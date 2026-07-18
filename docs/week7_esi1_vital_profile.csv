@@ -1,0 +1,10 @@
+measure,caught,missed
+age,89.0,74.0
+triage_vital_hr,69.5,84.0
+triage_vital_rr,18.5,18.0
+triage_vital_o2,97.0,97.0
+triage_vital_o2_device,0.0,0.0
+triage_vital_temp,98.0,97.7
+triage_glucose,118.0,118.0
+red_flag_hypoxia,0.0,0.0
+red_flag_tachypnea,0.0,0.0

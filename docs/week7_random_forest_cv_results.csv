@@ -1,0 +1,9 @@
+rank_test_macro_f1,mean_test_macro_f1,mean_test_esi_1_recall,mean_fit_time,params
+1,0.48316783986260087,0.22936507936507936,207.14261690775552,"{'n_estimators': 200, 'min_samples_leaf': 4, 'max_features': 0.6, 'max_depth': None, 'class_weight': 'balanced'}"
+2,0.43995454059392697,0.19682539682539682,24.814254840215046,"{'n_estimators': 200, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 22, 'class_weight': 'balanced'}"
+3,0.4029399443530945,0.016666666666666666,29.477421681086224,"{'n_estimators': 200, 'min_samples_leaf': 1, 'max_features': 'sqrt', 'max_depth': 22, 'class_weight': 'balanced_subsample'}"
+4,0.39294717057056205,0.407936507936508,17.211545944213867,"{'n_estimators': 300, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 14, 'class_weight': 'balanced_subsample'}"
+5,0.38061473112849825,0.196031746031746,197.6303882598877,"{'n_estimators': 300, 'min_samples_leaf': 2, 'max_features': 0.6, 'max_depth': 22, 'class_weight': {1: 12, 2: 2, 3: 1, 4: 1, 5: 1}}"
+6,0.3726439482574235,0.1634920634920635,57.446234385172524,"{'n_estimators': 200, 'min_samples_leaf': 4, 'max_features': 0.4, 'max_depth': 22, 'class_weight': {1: 12, 2: 2, 3: 1, 4: 1, 5: 1}}"
+7,0.33243063650431526,0.14761904761904762,193.68527324994406,"{'n_estimators': 450, 'min_samples_leaf': 4, 'max_features': 0.6, 'max_depth': 14, 'class_weight': {1: 12, 2: 2, 3: 1, 4: 1, 5: 1}}"
+8,0.3102129527467358,0.016666666666666666,100.62626798947652,"{'n_estimators': 450, 'min_samples_leaf': 8, 'max_features': 0.4, 'max_depth': 14, 'class_weight': {1: 6, 2: 1.5, 3: 1, 4: 1, 5: 1}}"

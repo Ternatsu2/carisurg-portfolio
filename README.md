@@ -10,7 +10,28 @@ This repository collects my CariSurg technical work, starting with emergency tri
 
 The main audience is CariSurg tutors and clinical or technical reviewers who want to see the work behind my submissions without digging through separate files. It should also be readable for someone reviewing my healthcare AI portfolio later.
 
-## Current Week 6 Submission
+## Current Week 7 Submission
+
+The Week 7 interim adds a complex model to the emergency-triage benchmark without
+changing the Week 6 holdout:
+
+- `notebooks/week7_interim_complex_model.ipynb`: reproduced logistic baseline,
+  Random Forest training, training-only tuning, test metrics, timing, and ESI 1 review.
+- `docs/week7_draft_benchmark.md`: the required draft benchmark table and early read.
+- `docs/week7_benchmark_metrics.csv`: machine-readable scores, timing, ESI 1 counts,
+  and interpretability ratings.
+- `docs/week7_random_forest_cv_results.csv`: the eight training-fold candidates.
+- `docs/week7_model_comparison.png`: macro F1, ESI 1 recall, and inference comparison.
+- `docs/week7_confusion_random_forest.png`: held-out confusion matrix.
+- `docs/week7_feature_importance.png`: the leading Random Forest features.
+
+The notebook keeps the original 44,096/11,025 stratified split and adds two
+non-blood-pressure red flags: hypoxia and tachypnea. Hyperparameters are selected
+with three-fold cross-validation on the training set only. The 16 ESI 1 test visits
+are reported as both a count and a recall rate because a single case changes recall
+by 6.25 percentage points.
+
+## Week 6 Baseline
 
 The Week 6 final submission compares the required baselines and a small training-only tuning pass for the emergency triage dataset:
 
@@ -46,18 +67,23 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-The full programme CSV is not stored in GitHub. Set its local path before running the Week 6 notebook:
+The full programme CSV is not stored in GitHub. Set its local path before running
+the Week 6 or Week 7 notebook:
 
 ```bash
 export CARISURG_TRIAGE_CSV=/path/to/yaleemmlc_admissionprediction_triage.csv
-jupyter notebook notebooks/week6_final_baseline_models.ipynb
+jupyter notebook notebooks/week7_interim_complex_model.ipynb
 ```
 
 In Google Colab, upload or mount the same CSV, then set `CARISURG_TRIAGE_CSV` to that path.
 
 ## Data Note
 
-The Week 5 and Week 6 analyses use the TenX file `yaleemmlc_admissionprediction_triage.csv`. I did not commit the full CSV because it is a large clinical dataset. The repo includes a sample and schema under `week5/data/` so reviewers can inspect the structure without storing the full file here.
+The Week 5, Week 6, and Week 7 analyses use the TenX file
+`yaleemmlc_admissionprediction_triage.csv`. I did not commit the full CSV because
+it is a large clinical dataset. The repo includes a sample and schema under
+`week5/data/` so reviewers can inspect the structure without storing the full file
+here.
 
 ## Contact
 

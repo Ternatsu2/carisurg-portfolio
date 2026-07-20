@@ -12,24 +12,26 @@ The main audience is CariSurg tutors and clinical or technical reviewers who wan
 
 ## Current Week 7 Submission
 
-The Week 7 interim adds a complex model to the emergency-triage benchmark without
-changing the Week 6 holdout:
+[Open the Week 7 final submission wrapper](docs/week-7-submission.md).
 
-- `notebooks/week7_interim_complex_model.ipynb`: reproduced logistic baseline,
-  Random Forest training, training-only tuning, test metrics, timing, and ESI 1 review.
-- `docs/week7_draft_benchmark.md`: the required draft benchmark table and early read.
-- `docs/week7_benchmark_metrics.csv`: machine-readable scores, timing, ESI 1 counts,
-  and interpretability ratings.
-- `docs/week7_random_forest_cv_results.csv`: the eight training-fold candidates.
-- `docs/week7_model_comparison.png`: macro F1, ESI 1 recall, and inference comparison.
-- `docs/week7_confusion_random_forest.png`: held-out confusion matrix.
-- `docs/week7_feature_importance.png`: the leading Random Forest features.
+The final compares the reproduced Week 6 tuned logistic model with cross-validated
+Random Forest and histogram gradient-boosting models on the unchanged holdout:
 
-The notebook keeps the original 44,096/11,025 stratified split and adds two
-non-blood-pressure red flags: hypoxia and tachypnea. Hyperparameters are selected
-with three-fold cross-validation on the training set only. The 16 ESI 1 test visits
-are reported as both a count and a recall rate because a single case changes recall
-by 6.25 percentage points.
+- `notebooks/week7_final_model_tradeoff.ipynb`: feature engineering, training-only
+  tuning, seven-dimension benchmark, interpretability review, and ESI 1 error analysis.
+- `docs/week-7-cost-benefit.pdf`: three-page memo for the ED Board and Clinical IT.
+- `docs/week-7-cost-benefit.md`: accessible source for the same memo.
+- `docs/decisions/2026-week-7-model-choice.md`: dated decision journal.
+- `docs/week7_final_benchmark.md`: compact benchmark and recommendation.
+- `docs/week7_final_benchmark.csv`: machine-readable scores, timing, and ESI 1 counts.
+- `docs/week7_final_model_comparison.png`: macro F1, ESI 1 recall, and inference cost.
+- `docs/week7_final_confusion_comparison.png`: held-out confusion matrices.
+- `docs/week7_final_esi1_complaints.png`: aggregate complaint patterns in ESI 1 errors.
+
+The tuned logistic model remains the Phase 3 shadow-mode candidate. It caught 7 of
+16 held-out ESI 1 visits, compared with 6 for tuned gradient boosting and 5 for the
+tuned Random Forest, while retaining the strongest macro F1 and the clearest
+patient-level explanation path. None of the models is suitable for autonomous triage.
 
 ## Week 6 Baseline
 
@@ -72,7 +74,7 @@ the Week 6 or Week 7 notebook:
 
 ```bash
 export CARISURG_TRIAGE_CSV=/path/to/yaleemmlc_admissionprediction_triage.csv
-jupyter notebook notebooks/week7_interim_complex_model.ipynb
+jupyter notebook notebooks/week7_final_model_tradeoff.ipynb
 ```
 
 In Google Colab, upload or mount the same CSV, then set `CARISURG_TRIAGE_CSV` to that path.

@@ -1,0 +1,13 @@
+rank_test_macro_f1,mean_test_macro_f1,mean_test_esi_1_recall,mean_fit_time,params
+1,0.435254954397206,0.2611111111111111,26.195823589960735,"{'n_estimators': 150, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': None, 'class_weight': 'balanced'}"
+2,0.43168002250096543,0.13253968253968254,50.13413405418396,"{'n_estimators': 350, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 22, 'class_weight': 'balanced'}"
+3,0.42353950714990335,0.0992063492063492,43.83586629231771,"{'n_estimators': 250, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 22, 'class_weight': 'balanced_subsample'}"
+4,0.40201365396686173,0.0,49.25238807996114,"{'n_estimators': 250, 'min_samples_leaf': 1, 'max_features': 'sqrt', 'max_depth': 22, 'class_weight': 'balanced'}"
+5,0.4009121017712112,0.06666666666666667,26.273057381312054,"{'n_estimators': 150, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': None, 'class_weight': {1: 16, 2: 2, 3: 1, 4: 1, 5: 1}}"
+6,0.3587419855929727,0.016666666666666666,57.476858377456665,"{'n_estimators': 250, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': None, 'class_weight': {1: 16, 2: 2, 3: 1, 4: 1, 5: 1}}"
+7,0.3306358699210279,0.0,37.79431025187174,"{'n_estimators': 250, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 22, 'class_weight': {1: 6, 2: 1.5, 3: 1, 4: 1, 5: 1}}"
+8,0.310912096323629,0.0,27.709195375442505,"{'n_estimators': 250, 'min_samples_leaf': 1, 'max_features': 'log2', 'max_depth': 22, 'class_weight': {1: 6, 2: 1.5, 3: 1, 4: 1, 5: 1}}"
+9,0.29857848764327793,0.0,20.798879384994507,"{'n_estimators': 350, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 22, 'class_weight': {1: 6, 2: 1.5, 3: 1, 4: 1, 5: 1}}"
+10,0.271656198893392,0.0,13.02379067738851,"{'n_estimators': 150, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 22, 'class_weight': {1: 10, 2: 2, 3: 1, 4: 1, 5: 1}}"
+11,0.2682332108904897,0.016666666666666666,25.763257026672363,"{'n_estimators': 250, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 16, 'class_weight': {1: 16, 2: 2, 3: 1, 4: 1, 5: 1}}"
+12,0.2236448695683895,0.0,13.741424719492594,"{'n_estimators': 150, 'min_samples_leaf': 4, 'max_features': 'sqrt', 'max_depth': 10, 'class_weight': {1: 16, 2: 2, 3: 1, 4: 1, 5: 1}}"

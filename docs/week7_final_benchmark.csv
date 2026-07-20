@@ -1,0 +1,4 @@
+model,accuracy,macro_precision,macro_recall,macro_f1,esi_1_recall,esi_1_caught,esi_1_missed,train_seconds,inference_ms_per_patient,interpretability,interpretability_reason
+Week 6 tuned logistic,0.6805442176870748,0.5526996168006898,0.5114566249952178,0.5008793180113627,0.4375,7,9,3.3580587920000013,0.0011515419501134396,High,Scaled coefficients give a direct direction and strength for each class.
+Tuned Random Forest,0.5717913832199546,0.4247812997659056,0.5359248037567481,0.4441466001171429,0.3125,5,11,4.977590666000026,0.007807505668935636,Medium,"Global feature importance is available, but hundreds of trees do not give one simple patient-level path."
+Tuned gradient boosting,0.6230385487528345,0.4602055974349364,0.5884265440496655,0.48472283008246964,0.375,6,10,28.631576957999982,0.0153363529251694,Low,A faithful patient-level account would require a separate method such as SHAP.

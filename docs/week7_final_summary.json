@@ -1,0 +1,37 @@
+{
+  "recommended_model": "Week 6 tuned logistic",
+  "best_complex_model": "Tuned gradient boosting",
+  "test_index_sha256": "5e31ff9f74281290a36280585ecab4a22f5cb2b1ca48a6c2d1f7aed85422fa47",
+  "training_visits": 44096,
+  "test_visits": 11025,
+  "test_esi_1_visits": 16,
+  "rf_search_seconds": 154.280257292,
+  "rf_best_params": {
+    "n_estimators": 150,
+    "min_samples_leaf": 8,
+    "max_features": "sqrt",
+    "max_depth": null,
+    "class_weight": "balanced"
+  },
+  "hgb_search_seconds": 108.23042729100001,
+  "hgb_best_params": {
+    "min_samples_leaf": 10,
+    "max_leaf_nodes": 63,
+    "max_iter": 200,
+    "max_depth": null,
+    "learning_rate": 0.08,
+    "l2_regularization": 1.0
+  },
+  "near_normal_counts": {
+    "caught": {
+      "sum": 3,
+      "count": 7,
+      "share": 0.42857142857142855
+    },
+    "missed": {
+      "sum": 3,
+      "count": 9,
+      "share": 0.3333333333333333
+    }
+  }
+}

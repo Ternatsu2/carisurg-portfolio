@@ -1,0 +1,10 @@
+measure,caught,missed
+age,73.0,81.0
+triage_vital_hr,81.0,81.0
+triage_vital_sbp,195.5,148.0
+triage_vital_dbp,101.0,64.0
+triage_vital_rr,18.5,18.0
+triage_vital_o2,98.0,96.0
+triage_vital_o2_device,1.0,0.0
+triage_vital_temp,97.8,97.8
+triage_glucose,118.0,113.0

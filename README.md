@@ -10,6 +10,25 @@ This repository collects my CariSurg technical work, starting with emergency tri
 
 The main audience is CariSurg tutors and clinical or technical reviewers who want to see the work behind my submissions without digging through separate files. It should also be readable for someone reviewing my healthcare AI portfolio later.
 
+## Current Week 8 Interim
+
+[Open the Week 8 interim submission](docs/week-8-interim.md).
+
+The Week 8 work turns the selected Week 7 model into a reproducible command-line
+pipeline while keeping the notebooks as the exploration record:
+
+- `src/data.py`: CSV loading, schema checks, and the fixed stratified split.
+- `src/features.py`: the Week 6 feature selection and Week 7 clinical feature functions.
+- `src/model.py`: construction and evaluation of the pinned tuned logistic model.
+- `config.yaml`: the exact seed, split fingerprint, feature settings, and hyperparameters.
+- `scripts/train.py`: one entry point for loading, training, evaluation, and local artefacts.
+- `tests/test_pipeline.py`: the data-contract and 50-row training smoke checks.
+- `docs/model-selection.md`: the complete Week 6 and Week 7 model audit table.
+- `HANDOVER.md`: the one-page project handover.
+
+The refactored command reproduces the recorded holdout result exactly: accuracy
+`0.680544`, macro F1 `0.500879`, and ESI 1 recall of 7 out of 16 visits.
+
 ## Current Week 7 Submission
 
 [Open the Week 7 final submission wrapper](docs/week-7-submission.md).
@@ -54,6 +73,11 @@ The original logistic model identified 4 of the 16 ESI 1 visits. After I selecte
 
 - `notebooks/`: Jupyter notebooks for the technical work.
 - `docs/`: memos, reports, plots, and supporting tables.
+- `src/`: reusable loading, feature, and model modules.
+- `scripts/`: command-line entry points.
+- `tests/`: fast data-contract and training checks.
+- `config.yaml`: the pinned Week 8 training configuration.
+- `HANDOVER.md`: the concise project handover.
 - `data/`: placeholder folder for small programme data files. Real patient data should not be committed here.
 - `week0/`: original Week 0 submission folders and report outputs.
 - `week1/`: original Week 1 submission folders.
@@ -61,7 +85,8 @@ The original logistic model identified 4 of the 16 ESI 1 visits. After I selecte
 
 ## Setup
 
-The notebooks use Python 3 with pandas, numpy, matplotlib, seaborn, and scikit-learn.
+The project uses Python 3 with exact dependency versions pinned in
+`requirements.txt`.
 
 ```bash
 python -m venv .venv
@@ -69,15 +94,17 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-The full programme CSV is not stored in GitHub. Set its local path before running
-the Week 6 or Week 7 notebook:
+The full programme CSV is not stored in GitHub. Set its approved local path,
+then run the pinned Week 8 pipeline:
 
 ```bash
 export CARISURG_TRIAGE_CSV=/path/to/yaleemmlc_admissionprediction_triage.csv
-jupyter notebook notebooks/week7_final_model_tradeoff.ipynb
+python scripts/train.py --config config.yaml
+pytest -q
 ```
 
-In Google Colab, upload or mount the same CSV, then set `CARISURG_TRIAGE_CSV` to that path.
+The executed Week 6 and Week 7 notebooks remain under `notebooks/` for audit
+and further exploration.
 
 ## Data Note
 

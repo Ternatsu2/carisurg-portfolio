@@ -1,0 +1,44 @@
+seed: 42
+
+data:
+  raw_path: data/yaleemmlc_admissionprediction_triage.csv
+  environment_variable: CARISURG_TRIAGE_CSV
+  target: esi
+  expected_rows: 55121
+  expected_columns: 225
+  required_columns:
+    - esi
+    - disposition
+    - previousdispo
+    - triage_vital_hr
+    - triage_vital_sbp
+    - triage_vital_dbp
+    - triage_vital_rr
+    - triage_vital_o2
+    - triage_vital_o2_device
+    - triage_vital_temp
+    - triage_glucose
+
+split:
+  test_size: 0.20
+  expected_train_rows: 44096
+  expected_test_rows: 11025
+  expected_test_index_sha256: 5e31ff9f74281290a36280585ecab4a22f5cb2b1ca48a6c2d1f7aed85422fa47
+
+features:
+  leakage_columns:
+    - disposition
+    - previousdispo
+  use_engineered_features: false
+  expected_count: 209
+
+model:
+  name: tuned_logistic_regression
+  hyperparameters:
+    max_iter: 1500
+    class_weight:
+      1: 8
+
+outputs:
+  model_path: artifacts/week8_tuned_logistic.joblib
+  metrics_path: artifacts/week8_reproduction_metrics.json

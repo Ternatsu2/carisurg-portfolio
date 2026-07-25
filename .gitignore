@@ -19,3 +19,5 @@ data/*.json
 *.log
 *.tmp
 *.bak
+artifacts/*.joblib
+artifacts/*.json

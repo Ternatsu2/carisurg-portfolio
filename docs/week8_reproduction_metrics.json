@@ -1,0 +1,14 @@
+{
+  "accuracy": 0.6805442176870748,
+  "esi_1_caught": 7,
+  "esi_1_recall": 0.4375,
+  "esi_1_total": 16,
+  "feature_count": 209,
+  "macro_f1": 0.5008793180113627,
+  "macro_precision": 0.5526996168006898,
+  "macro_recall": 0.5114566249952178,
+  "model": "tuned_logistic_regression",
+  "test_index_sha256": "5e31ff9f74281290a36280585ecab4a22f5cb2b1ca48a6c2d1f7aed85422fa47",
+  "test_visits": 11025,
+  "training_visits": 44096
+}

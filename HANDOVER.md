@@ -18,6 +18,8 @@ ensembles. The full trade-off is recorded in the
 
 ## How to run it
 
+Use Python 3.9 or newer.
+
 ```bash
 git clone https://github.com/Ternatsu2/carisurg-portfolio.git
 cd carisurg-portfolio

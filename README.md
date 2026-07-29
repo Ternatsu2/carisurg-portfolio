@@ -10,12 +10,12 @@ This repository collects my CariSurg technical work, starting with emergency tri
 
 The main audience is CariSurg tutors and clinical or technical reviewers who want to see the work behind my submissions without digging through separate files. It should also be readable for someone reviewing my healthcare AI portfolio later.
 
-## Current Week 8 Interim
+## Current Week 8 Final
 
-[Open the Week 8 interim submission](docs/week-8-interim.md).
+[Open the Week 8 final submission](docs/week-8-final.md).
 
-The Week 8 work turns the selected Week 7 model into a reproducible command-line
-pipeline while keeping the notebooks as the exploration record:
+The Week 8 final turns the selected Week 7 model into a reproducible
+command-line pipeline while keeping the notebooks as the exploration record:
 
 - `src/data.py`: CSV loading, schema checks, and the fixed stratified split.
 - `src/features.py`: the Week 6 feature selection and Week 7 clinical feature functions.
@@ -25,6 +25,7 @@ pipeline while keeping the notebooks as the exploration record:
 - `tests/test_pipeline.py`: the data-contract and 50-row training smoke checks.
 - `docs/model-selection.md`: the complete Week 6 and Week 7 model audit table.
 - `HANDOVER.md`: the one-page project handover.
+- `.github/workflows/tests.yml`: the same two checks run on pushes and pull requests.
 
 The refactored command reproduces the recorded holdout result exactly: accuracy
 `0.680544`, macro F1 `0.500879`, and ESI 1 recall of 7 out of 16 visits.
@@ -85,7 +86,7 @@ The original logistic model identified 4 of the 16 ESI 1 visits. After I selecte
 
 ## Setup
 
-The project uses Python 3 with exact dependency versions pinned in
+The project uses Python 3.9 or newer with exact dependency versions pinned in
 `requirements.txt`.
 
 ```bash

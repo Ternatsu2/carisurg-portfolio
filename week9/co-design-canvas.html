@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 9 draft co-design canvas</title>
+  <style>
+    :root {
+      --ink: #202326;
+      --muted: #656a6d;
+      --paper: #f3f1ec;
+      --panel: #fffefa;
+      --line: #b7b3aa;
+      --red: #9e2f29;
+      --amber: #a76015;
+      --green: #41694f;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; letter-spacing: 0; }
+
+    main {
+      width: 1540px;
+      min-height: 1040px;
+      margin: 0 auto;
+      padding: 38px 42px 32px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 30px;
+      align-items: end;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    h1 { margin: 0; font: 600 34px Georgia, "Times New Roman", serif; }
+    header p { margin: 0; color: var(--muted); text-align: right; font-size: 14px; }
+
+    .question {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; }
+    .question strong { font: 600 23px/1.25 Georgia, "Times New Roman", serif; }
+
+    .canvas {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      margin-top: 20px;
+    }
+
+    section {
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 18px;
+      min-height: 210px;
+    }
+
+    section h2 {
+      margin: 0 0 10px;
+      font: 600 20px Georgia, "Times New Roman", serif;
+    }
+
+    section p, section li { font-size: 13px; line-height: 1.42; }
+    section p { margin: 7px 0; }
+    section ul, section ol { margin: 7px 0 0; padding-left: 18px; }
+    section li { margin-bottom: 4px; }
+
+    .accent-red { border-top: 5px solid var(--red); }
+    .accent-amber { border-top: 5px solid var(--amber); }
+    .accent-green { border-top: 5px solid var(--green); }
+
+    .decision {
+      display: inline-block;
+      margin-top: 5px;
+      border: 1px solid var(--ink);
+      padding: 5px 7px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .safety { grid-column: span 2; }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+    }
+
+    .risk-grid p { margin: 0; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <div class="label">CariSurg Week 9 interim</div>
+        <h1>Draft co-design canvas</h1>
+      </div>
+      <p>Emergency triage HCI | draft for nurse and Clinical IT review</p>
+    </header>
+
+    <div class="question">
+      <span class="label">Design question</span>
+      <strong>How might a triage screen show a model's suggested ESI level without slowing the encounter or replacing the nurse's judgement?</strong>
+    </div>
+
+    <div class="canvas">
+      <section class="accent-green">
+        <h2>Setting</h2>
+        <p><strong>Where:</strong> Mercer General ED triage workstation.</p>
+        <p><strong>When:</strong> After complaint and vital signs are recorded, before the nurse finalises ESI.</p>
+        <p><strong>Context:</strong> Noise, interruptions, queue pressure, night shifts, and unstable network or power.</p>
+      </section>
+
+      <section class="accent-green">
+        <h2>Users</h2>
+        <p><strong>Primary:</strong> ED triage nurse, who owns the final ESI decision.</p>
+        <p><strong>Secondary:</strong> Charge nurse, ED clinician, Clinical IT, governance and safety reviewers.</p>
+        <span class="decision">One active nurse per case</span>
+      </section>
+
+      <section class="accent-green">
+        <h2>Task and system mode</h2>
+        <ol>
+          <li>Review imported intake values.</li>
+          <li>Request a model suggestion.</li>
+          <li>Confirm or override it.</li>
+          <li>Record the nurse's final ESI.</li>
+        </ol>
+        <span class="decision">Nurse-controlled HCI</span>
+      </section>
+
+      <section class="accent-amber">
+        <h2>Inputs</h2>
+        <p><strong>Selected route:</strong> EHR pull with manual correction and fallback.</p>
+        <p>Age, chief complaint, arrival mode, pulse, BP, respiratory rate, SpO2, temperature, glucose, and oxygen context.</p>
+        <p>Show source, collection time, and validation state for every value.</p>
+      </section>
+
+      <section class="accent-amber">
+        <h2>Output and display</h2>
+        <p>Suggested ESI 1 to 5 with a number, urgency label, and redundant colour cue.</p>
+        <p>Keep the reviewed complaint and vital signs beside the suggestion.</p>
+        <p>Do not invent a confidence score or causal explanation.</p>
+      </section>
+
+      <section class="accent-amber">
+        <h2>Human action</h2>
+        <p><strong>Confirm:</strong> nurse accepts the suggested ESI.</p>
+        <p><strong>Override:</strong> nurse selects an ESI and records clinical judgement, new information, a data-quality issue, or another reason.</p>
+        <p>Keep the model value, human value, user, reason and time in the audit trail.</p>
+      </section>
+
+      <section class="accent-red safety">
+        <h2>Failure, mitigation and residual risk</h2>
+        <div class="risk-grid">
+          <p><strong>Under-triage:</strong> keep the nurse as decision owner; the suggestion may still anchor judgement.</p>
+          <p><strong>Alert fatigue:</strong> use one high-acuity reminder; the alert may still be missed.</p>
+          <p><strong>Missing or stale data:</strong> show source and time, block the model request, and allow manual correction.</p>
+          <p><strong>Service outage:</strong> show an unavailable state and return to manual triage without losing entered values.</p>
+          <p><strong>Interface clutter:</strong> keep data, suggestion and decision controls in one reading path.</p>
+          <p><strong>Accessibility:</strong> pair colour with text and number; test contrast, glare and language needs with users.</p>
+        </div>
+      </section>
+
+      <section class="accent-red">
+        <h2>Co-design checks</h2>
+        <ul>
+          <li>Which values must stay visible?</li>
+          <li>When should the suggestion appear?</li>
+          <li>Which override reasons fit existing practice?</li>
+          <li>Is a 60-second reminder useful or distracting?</li>
+          <li>Who can reverse a decision, and when?</li>
+        </ul>
+        <p><strong>Review with:</strong> triage and charge nurses, ED clinician, Clinical IT, accessibility/patient experience, and governance.</p>
+      </section>
+    </div>
+
+    <footer>
+      <span>Draft decisions for co-design review. No claim of clinical validation.</span>
+      <span>Terry Benjamin Jr. | 1 August 2026</span>
+    </footer>
+  </main>
+</body>
+</html>

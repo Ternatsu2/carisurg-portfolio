@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 9 triage review mock-ups</title>
+  <style>
+    :root {
+      --ink: #1f2326;
+      --muted: #666c70;
+      --paper: #f3f1ec;
+      --panel: #fffefa;
+      --line: #c8c5bd;
+      --critical: #a92721;
+      --warning: #b96713;
+      --ok: #3e6a50;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: 1540px;
+      margin: 0 auto;
+      padding: 42px 36px 52px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    header p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .frame {
+      background: var(--panel);
+      border: 1px solid #aaa79f;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, .07);
+      min-height: 820px;
+    }
+
+    .step {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 18px;
+      color: #fff;
+      background: var(--ink);
+      font-size: 14px;
+    }
+
+    .step strong { font-size: 15px; }
+    .screen { padding: 20px; }
+
+    .patient {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .patient small,
+    .eyebrow {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      margin: 0 0 5px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    .patient p, .note p, .status p { margin: 4px 0; }
+
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .field {
+      border: 1px solid var(--line);
+      padding: 10px 11px;
+      min-height: 69px;
+    }
+
+    .field label {
+      color: var(--muted);
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .field strong { font-size: 17px; }
+
+    .source {
+      display: block;
+      color: var(--ok);
+      font-size: 11px;
+      margin-top: 6px;
+    }
+
+    .source.manual { color: var(--warning); }
+
+    .note, .status {
+      margin-top: 15px;
+      border-left: 4px solid var(--warning);
+      background: #f5eee5;
+      padding: 11px 12px;
+      font-size: 13px;
+    }
+
+    .actions { display: flex; gap: 9px; margin-top: 18px; }
+
+    button {
+      border: 1px solid var(--ink);
+      border-radius: 4px;
+      background: var(--panel);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+      padding: 11px 14px;
+    }
+
+    button.primary { background: var(--ink); color: #fff; }
+
+    .suggestion {
+      display: grid;
+      grid-template-columns: 115px 1fr;
+      border: 2px solid var(--critical);
+      margin: 12px 0 17px;
+    }
+
+    .score {
+      background: var(--critical);
+      color: #fff;
+      text-align: center;
+      padding: 20px 8px;
+    }
+
+    .score span { display: block; font-size: 13px; font-weight: 700; }
+
+    .score strong {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 60px;
+      line-height: 1;
+      margin: 6px 0;
+    }
+
+    .suggestion-copy { padding: 17px; }
+    .suggestion-copy h3 { margin: 0 0 8px; font-size: 20px; }
+    .suggestion-copy p { margin: 6px 0; font-size: 13px; line-height: 1.4; }
+
+    .data-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 16px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 13px 0;
+      font-size: 13px;
+    }
+
+    .data-list span { color: var(--muted); }
+
+    .decision {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .choice {
+      border: 1px solid var(--line);
+      padding: 12px;
+      min-height: 92px;
+    }
+
+    .choice.selected { border: 2px solid var(--ink); background: #efede7; }
+    .choice strong { display: block; margin-bottom: 5px; }
+    .choice p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .reason { border: 1px solid var(--line); padding: 9px; font-size: 12px; }
+    .reason.selected { border: 2px solid var(--warning); background: #f5eee5; }
+
+    .audit {
+      margin-top: 16px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <span class="eyebrow">CariSurg Week 9 interim</span>
+        <h1>Nurse-facing triage review</h1>
+      </div>
+      <p>Initial HCI mock-ups | fictional patient data</p>
+    </header>
+
+    <section class="board">
+      <article class="frame">
+        <div class="step"><strong>1. Review inputs</strong><span>Model not run</span></div>
+        <div class="screen">
+          <div class="patient">
+            <small>Encounter MG-00917 | fictional</small>
+            <h2>Adult walk-in</h2>
+            <p>Chest discomfort, started 45 minutes ago</p>
+          </div>
+
+          <span class="eyebrow">Imported values</span>
+          <div class="fields">
+            <div class="field"><label>Age</label><strong>54 years</strong><span class="source">EHR | 10:41</span></div>
+            <div class="field"><label>Pulse</label><strong>108 bpm</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>Blood pressure</label><strong>148 / 92</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>Respiratory rate</label><strong>24 /min</strong><span class="source manual">Manual | 10:43</span></div>
+            <div class="field"><label>SpO2</label><strong>93%</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>Oxygen context</label><strong>Room air</strong><span class="source manual">Nurse confirmed</span></div>
+            <div class="field"><label>Temperature</label><strong>98.4 F</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>Glucose</label><strong>118 mg/dL</strong><span class="source">EHR | 10:40</span></div>
+          </div>
+
+          <div class="note">
+            <strong>Check before continuing</strong>
+            <p>Respiratory rate and oxygen context were entered manually.</p>
+          </div>
+          <div class="actions"><button>Edit values</button><button class="primary">Use reviewed values</button></div>
+        </div>
+      </article>
+
+      <article class="frame">
+        <div class="step"><strong>2. Review suggestion</strong><span>Decision pending</span></div>
+        <div class="screen">
+          <div class="patient">
+            <small>Encounter MG-00917 | fictional</small>
+            <h2>Decision support</h2>
+            <p>Values reviewed by Triage Nurse T.B. at 10:44</p>
+          </div>
+
+          <div class="suggestion">
+            <div class="score"><span>Suggested ESI</span><strong>2</strong><span>High urgency</span></div>
+            <div class="suggestion-copy">
+              <h3>Nurse review required</h3>
+              <p>This is a model suggestion. Check the patient and the source values before recording a final ESI level.</p>
+              <p><strong>No calibrated confidence score is available.</strong></p>
+            </div>
+          </div>
+
+          <span class="eyebrow">Values supplied to model</span>
+          <div class="data-list">
+            <div><span>Pulse</span><br><strong>108 bpm</strong></div>
+            <div><span>Blood pressure</span><br><strong>148 / 92</strong></div>
+            <div><span>Respiratory rate</span><br><strong>24 /min</strong></div>
+            <div><span>SpO2</span><br><strong>93% on room air</strong></div>
+            <div><span>Temperature</span><br><strong>98.4 F</strong></div>
+            <div><span>Glucose</span><br><strong>118 mg/dL</strong></div>
+          </div>
+
+          <div class="status">
+            <strong>Safety state</strong>
+            <p>Final ESI has not been recorded. High-acuity suggestions remain pending until a nurse responds.</p>
+          </div>
+          <div class="actions"><button class="primary">Confirm ESI 2</button><button>Override</button></div>
+        </div>
+      </article>
+
+      <article class="frame">
+        <div class="step"><strong>3. Record decision</strong><span>Override selected</span></div>
+        <div class="screen">
+          <div class="patient">
+            <small>Encounter MG-00917 | fictional</small>
+            <h2>Confirm or override</h2>
+            <p>Model suggestion: ESI 2, high urgency</p>
+          </div>
+
+          <span class="eyebrow">Nurse decision</span>
+          <div class="decision">
+            <div class="choice"><strong>Confirm ESI 2</strong><p>Use the model suggestion as the nurse's final decision.</p></div>
+            <div class="choice selected"><strong>Override suggestion</strong><p>Select a different ESI level and record why.</p></div>
+          </div>
+
+          <div class="field"><label>Final nurse-assigned ESI</label><strong>1 | Resuscitation</strong></div>
+
+          <span class="eyebrow" style="margin-top: 16px;">Reason</span>
+          <div class="reasons">
+            <div class="reason selected">Clinical judgement</div>
+            <div class="reason">New information</div>
+            <div class="reason">Data quality issue</div>
+            <div class="reason">Other</div>
+          </div>
+
+          <div class="note">
+            <strong>Required note</strong>
+            <p>Patient became pale and diaphoretic during assessment. Immediate clinician review requested.</p>
+          </div>
+
+          <div class="audit">
+            <strong>Audit preview</strong><br>
+            Nurse: Triage Nurse T.B. | 10:45<br>
+            Model: triage-logistic-v1 | Suggested ESI 2<br>
+            Final human decision: ESI 1 | Override retained
+          </div>
+          <div class="actions"><button>Back</button><button class="primary">Record nurse decision</button></div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>Initial sketch for co-design review. No live clinical connection.</span>
+      <span>Terry Benjamin Jr. | 1 August 2026</span>
+    </footer>
+  </main>
+</body>
+</html>

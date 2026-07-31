@@ -10,6 +10,15 @@ This repository collects my CariSurg technical work, starting with emergency tri
 
 The main audience is CariSurg tutors and clinical or technical reviewers who want to see the work behind my submissions without digging through separate files. It should also be readable for someone reviewing my healthcare AI portfolio later.
 
+## Current Week 9 Interim
+
+[Open the Week 9 interim submission](week9/README.md).
+
+The Week 9 interim moves the selected triage model into an initial nurse-facing
+HCI design. The submission includes a draft co-design canvas, three linked
+mock-up states, and integration notes that define the selected data route,
+output format, human action, override path, and degraded mode.
+
 ## Current Week 8 Final
 
 [Open the Week 8 final submission](docs/week-8-final.md).

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 9 HRI intake assistant mock-up</title>
+  <style>
+    :root { --ink:#1f2326; --muted:#666c70; --paper:#f3f1ec; --panel:#fffefa; --line:#c8c5bd; --green:#3e6a50; --amber:#b96713; --red:#a92721; --soft:#e8ece8; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,Helvetica,sans-serif; letter-spacing:0; }
+    main { width:1540px; margin:0 auto; padding:42px 36px 48px; }
+    header { display:flex; justify-content:space-between; align-items:end; border-bottom:2px solid var(--ink); padding-bottom:16px; margin-bottom:28px; }
+    h1 { margin:0; font:600 36px Georgia,"Times New Roman",serif; }
+    header p { margin:0; color:var(--muted); font-size:15px; }
+    .eyebrow { display:block; color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase; margin-bottom:5px; }
+    .board { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:start; }
+    .frame { background:var(--panel); border:1px solid #aaa79f; box-shadow:0 2px 7px rgba(0,0,0,.07); min-height:820px; }
+    .step { display:flex; justify-content:space-between; align-items:center; padding:16px 18px; color:#fff; background:var(--ink); font-size:14px; }
+    .step strong { font-size:15px; }
+    .screen { padding:20px; }
+    h2 { margin:0 0 7px; font:600 25px Georgia,"Times New Roman",serif; }
+    p { font-size:13px; line-height:1.42; }
+    .intro { border-bottom:1px solid var(--line); padding-bottom:13px; margin-bottom:16px; }
+    .robot-zone { display:grid; grid-template-columns:180px 1fr; gap:18px; align-items:center; margin:12px 0 17px; }
+    .robot { position:relative; width:166px; height:330px; margin:auto; }
+    .head { position:absolute; left:31px; top:0; width:104px; height:78px; background:#faf9f5; border:3px solid var(--ink); border-radius:22px 22px 14px 14px; }
+    .head::before, .head::after { content:""; position:absolute; top:27px; width:10px; height:10px; background:var(--green); border-radius:50%; }
+    .head::before { left:27px; } .head::after { right:27px; }
+    .body { position:absolute; left:13px; top:70px; width:140px; height:186px; background:#eceae4; border:3px solid var(--ink); border-radius:18px; }
+    .display { margin:19px auto 0; width:104px; height:94px; background:var(--panel); border:2px solid var(--ink); padding:10px; text-align:center; font-size:11px; line-height:1.35; }
+    .display strong { display:block; margin:7px 0; font-size:15px; }
+    .nurse-call { display:block; width:94px; margin:10px auto; background:var(--red); color:white; border:0; border-radius:4px; padding:8px 5px; font-weight:700; }
+    .base { position:absolute; left:0; bottom:0; width:166px; height:86px; background:#d8d6d0; border:3px solid var(--ink); border-radius:18px 18px 9px 9px; }
+    .base::after { content:"STATIONARY"; position:absolute; left:22px; bottom:17px; width:116px; text-align:center; border:1px solid var(--ink); padding:4px 0; font-size:10px; font-weight:700; }
+    .feature-list { border-left:4px solid var(--green); padding-left:12px; }
+    .feature-list div { border-bottom:1px solid var(--line); padding:8px 0; font-size:12px; }
+    .feature-list div:last-child { border-bottom:0; }
+    .options { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:13px 0 17px; }
+    .option { border:1px solid var(--line); padding:12px; min-height:78px; }
+    .option.selected { border:2px solid var(--green); background:var(--soft); }
+    .option strong { display:block; margin-bottom:5px; }
+    .option span { color:var(--muted); font-size:12px; }
+    .prompt { border:2px solid var(--ink); padding:17px; margin:12px 0; }
+    .prompt strong { display:block; font:600 22px Georgia,"Times New Roman",serif; margin-bottom:9px; }
+    .caption { background:#efede7; border-left:4px solid var(--amber); padding:11px 12px; margin:14px 0; }
+    .caption span { color:var(--muted); font-size:11px; text-transform:uppercase; font-weight:700; }
+    .caption p { margin:5px 0 0; font-size:15px; }
+    .progress { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:13px 0 18px; }
+    .progress span { height:7px; background:#d7d4cc; }
+    .progress span.done { background:var(--green); }
+    .actions { display:flex; gap:9px; margin-top:16px; }
+    button { border:1px solid var(--ink); border-radius:4px; background:var(--panel); color:var(--ink); font:inherit; font-weight:700; padding:11px 14px; }
+    button.primary { background:var(--ink); color:#fff; }
+    button.danger { color:var(--red); border-color:var(--red); }
+    .handoff { border:2px solid var(--green); padding:15px; margin:12px 0 15px; }
+    .handoff h3 { margin:0 0 7px; font-size:19px; }
+    .handoff p { margin:5px 0; }
+    .record { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin:12px 0; }
+    .record div { border:1px solid var(--line); padding:10px; min-height:65px; }
+    .record label { display:block; color:var(--muted); font-size:11px; margin-bottom:5px; }
+    .record strong { font-size:14px; }
+    .boundary { border-left:4px solid var(--red); background:#f4e9e7; padding:11px 12px; margin:14px 0; }
+    .boundary p { margin:4px 0; }
+    .offline { border-top:1px solid var(--line); margin-top:16px; padding-top:13px; }
+    .offline strong { color:var(--red); }
+    footer { margin-top:20px; display:flex; justify-content:space-between; color:var(--muted); font-size:13px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><span class="eyebrow">CariSurg Week 9 final</span><h1>Embodied intake assistant</h1></div>
+      <p>Completed HRI mock-up | optional patient interaction</p>
+    </header>
+    <section class="board">
+      <article class="frame">
+        <div class="step"><strong>1. Choose how to interact</strong><span>Patient controlled</span></div>
+        <div class="screen">
+          <div class="intro"><span class="eyebrow">Physical concept</span><h2>Stationary triage assistant</h2><p>Collects a draft for a nurse. It does not diagnose, assign ESI, or give treatment advice.</p></div>
+          <div class="robot-zone">
+            <div class="robot"><div class="head"></div><div class="body"><div class="display">ASSISTANT<strong>Nurse decides</strong>Touch, speak or call</div><button class="nurse-call">CALL NURSE</button></div><div class="base"></div></div>
+            <div class="feature-list">
+              <div><strong>Wipeable shell</strong><br>Cleaning status visible</div>
+              <div><strong>Adjustable display</strong><br>Text, captions and touch</div>
+              <div><strong>Push-to-talk</strong><br>No always-on recording</div>
+              <div><strong>Locked base</strong><br>No autonomous movement</div>
+              <div><strong>Physical controls</strong><br>Nurse call and stop</div>
+            </div>
+          </div>
+          <span class="eyebrow">Your choice</span>
+          <div class="options"><div class="option selected"><strong>Continue</strong><span>Use touch or push-to-talk</span></div><div class="option"><strong>Call a nurse</strong><span>Skip the assistant now</span></div><div class="option"><strong>Language</strong><span>English selected</span></div><div class="option"><strong>Access options</strong><span>Captions, size and volume</span></div></div>
+          <div class="actions"><button class="danger">Decline</button><button class="primary">I agree to continue</button></div>
+        </div>
+      </article>
+      <article class="frame">
+        <div class="step"><strong>2. Capture and check</strong><span>Question 2 of 4</span></div>
+        <div class="screen">
+          <div class="intro"><span class="eyebrow">Encounter MG-01002 | fictional</span><h2>Tell the nurse what brought you in</h2><p>One short question at a time. Captions stay visible.</p></div>
+          <div class="progress"><span class="done"></span><span class="done"></span><span></span><span></span></div>
+          <div class="prompt"><strong>When did the breathing problem start?</strong><p>Press and hold the microphone button while speaking, or choose touch entry.</p></div>
+          <div class="caption"><span>Captured answer - check before continuing</span><p>"It started suddenly about twenty minutes ago."</p></div>
+          <div class="options"><div class="option selected"><strong>Answer is correct</strong><span>Keep this wording</span></div><div class="option"><strong>Try voice again</strong><span>Discard and re-record</span></div><div class="option"><strong>Type instead</strong><span>Use the touch keyboard</span></div><div class="option"><strong>Call a nurse</strong><span>Stop and hand over</span></div></div>
+          <div class="boundary"><strong>Safety boundary</strong><p>The assistant checks only whether the answer was captured. It does not decide urgency or reassure the patient.</p></div>
+          <div class="actions"><button>Back</button><button class="primary">Confirm answer</button></div>
+        </div>
+      </article>
+      <article class="frame">
+        <div class="step"><strong>3. Hand off to nurse</strong><span>Draft ready</span></div>
+        <div class="screen">
+          <div class="intro"><span class="eyebrow">Review before sending</span><h2>Nurse handoff</h2><p>You can change, erase, or send this draft. A nurse still assesses you and decides urgency.</p></div>
+          <div class="handoff"><h3>Unverified patient draft</h3><p><strong>Reason for visit:</strong> Sudden shortness of breath</p><p><strong>Started:</strong> About 20 minutes ago</p><p><strong>Access need:</strong> Captions on; English</p></div>
+          <div class="record"><div><label>Input mode</label><strong>Push-to-talk + touch</strong></div><div><label>Patient review</label><strong>Confirmed at 14:08</strong></div><div><label>Cleaning status</label><strong>Current | 13:54</strong></div><div><label>Device health</label><strong>Online | checks passed</strong></div></div>
+          <div class="boundary"><strong>Not sent to the model</strong><p>This assistant creates an intake draft only. The nurse reviews the patient before any ESI decision-support request.</p></div>
+          <div class="actions"><button>Change draft</button><button class="danger">Erase</button><button class="primary">Send to nurse</button></div>
+          <div class="offline"><strong>If the network or device fails</strong><p>Do not show a stale handoff. Keep the nurse-call control active, discard unsent clinical text after timeout, and direct the patient to the normal desk.</p></div>
+        </div>
+      </article>
+    </section>
+    <footer><span>Visual prototype only. No speech model, EHR connection, device stream, or working robot.</span><span>Terry Benjamin Jr. | 4 August 2026</span></footer>
+  </main>
+</body>
+</html>

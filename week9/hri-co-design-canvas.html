@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 9 completed HRI co-design canvas</title>
+  <style>
+    :root { --ink:#202326; --muted:#656a6d; --paper:#f3f1ec; --panel:#fffefa; --line:#b7b3aa; --red:#9e2f29; --amber:#a76015; --green:#41694f; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,Helvetica,sans-serif; letter-spacing:0; }
+    main { width:1540px; min-height:1040px; margin:0 auto; padding:38px 42px 32px; }
+    header { display:grid; grid-template-columns:1.5fr 1fr; gap:30px; align-items:end; padding-bottom:16px; border-bottom:2px solid var(--ink); }
+    h1 { margin:0; font:600 34px Georgia,"Times New Roman",serif; }
+    header p { margin:0; color:var(--muted); text-align:right; font-size:14px; }
+    .question { display:grid; grid-template-columns:170px 1fr; gap:22px; align-items:center; padding:18px 0; border-bottom:1px solid var(--line); }
+    .label { color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase; }
+    .question strong { font:600 22px/1.25 Georgia,"Times New Roman",serif; }
+    .canvas { display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid var(--line); border-left:1px solid var(--line); margin-top:20px; }
+    section { background:var(--panel); border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 18px; min-height:210px; }
+    section h2 { margin:0 0 10px; font:600 20px Georgia,"Times New Roman",serif; }
+    section p, section li { font-size:13px; line-height:1.4; }
+    section p { margin:7px 0; }
+    section ul, section ol { margin:7px 0 0; padding-left:18px; }
+    section li { margin-bottom:4px; }
+    .accent-red { border-top:5px solid var(--red); }
+    .accent-amber { border-top:5px solid var(--amber); }
+    .accent-green { border-top:5px solid var(--green); }
+    .decision { display:inline-block; margin-top:5px; border:1px solid var(--ink); padding:5px 7px; font-size:11px; font-weight:700; text-transform:uppercase; }
+    .safety { grid-column:span 2; }
+    .risk-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; }
+    .risk-grid p { margin:0; }
+    footer { display:flex; justify-content:space-between; margin-top:16px; color:var(--muted); font-size:12px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><div class="label">CariSurg Week 9 final</div><h1>Completed HRI co-design canvas</h1></div>
+      <p>Stationary intake assistant | patient choice and nurse handoff</p>
+    </header>
+    <div class="question">
+      <span class="label">Design question</span>
+      <strong>How might a stationary embodied assistant help patients communicate why they came to the ED while protecting dignity, preventing contamination, and making nurse handoff immediate?</strong>
+    </div>
+    <div class="canvas">
+      <section class="accent-green">
+        <h2>Setting</h2>
+        <p><strong>Where:</strong> Marked intake position visible to the triage desk but screened from the waiting area.</p>
+        <p><strong>When:</strong> Optional pre-triage complaint capture for walk-in patients.</p>
+        <p><strong>Context:</strong> Noise, mixed languages, limited privacy, mobility needs, infection controls, and power or network loss.</p>
+      </section>
+      <section class="accent-green">
+        <h2>Users and need</h2>
+        <p><strong>Primary:</strong> patient who chooses the assistant and the nurse who reviews the draft.</p>
+        <p><strong>Secondary:</strong> caregiver, interpreter, infection prevention, biomedical engineering, Clinical IT, accessibility and governance.</p>
+        <span class="decision">Patient may decline</span>
+      </section>
+      <section class="accent-green">
+        <h2>Form and boundary</h2>
+        <p>Stationary 120 cm unit, locked base, wipeable shell, adjustable screen, microphone, speaker, physical nurse-call and emergency-stop controls.</p>
+        <p>No human face, moving arms, autonomous navigation, diagnosis, ESI display, advice or treatment.</p>
+      </section>
+      <section class="accent-amber">
+        <h2>Interaction</h2>
+        <ol>
+          <li>State purpose and obtain consent.</li>
+          <li>Choose language and touch, push-to-talk or nurse mode.</li>
+          <li>Ask one short question at a time.</li>
+          <li>Read back and display each answer.</li>
+          <li>Review, correct, erase or send the draft.</li>
+          <li>Hand off to the nurse queue.</li>
+        </ol>
+      </section>
+      <section class="accent-amber">
+        <h2>Behaviour and output</h2>
+        <p>Neutral, concise prompts with captions and a visible progress marker.</p>
+        <p>"I recorded that" rather than simulated empathy. If audio is unclear, ask again or call a nurse instead of guessing.</p>
+        <p>Output is an unverified complaint draft, access preferences, consent state, times and device-health state.</p>
+      </section>
+      <section class="accent-amber">
+        <h2>Human action</h2>
+        <p><strong>Patient:</strong> continue, correct, erase, decline or call a nurse at any point.</p>
+        <p><strong>Nurse:</strong> review the draft, assess the patient, and decide whether any information is clinically useful.</p>
+        <p>The nurse, not the assistant or model, decides final ESI.</p>
+      </section>
+      <section class="accent-red safety">
+        <h2>Failure, mitigation and residual risk</h2>
+        <div class="risk-grid">
+          <p><strong>Excess trust:</strong> repeat "assistant - nurse decides"; embodiment may still imply authority.</p>
+          <p><strong>Infection:</strong> voice-first path, cleaning status and lockout; a false cleaning log remains possible.</p>
+          <p><strong>Noise and speech error:</strong> push-to-talk, captions and read-back; a patient may still confirm an error.</p>
+          <p><strong>Privacy:</strong> directional audio, privacy position and erase-before-send; speech can still be overheard.</p>
+          <p><strong>Physical safety:</strong> locked base, clear zone, rounded edges and stop switch; the unit can still obstruct movement.</p>
+          <p><strong>Outage or degradation:</strong> health check, low-battery warning and nurse route; failure can still cause frustration.</p>
+        </div>
+      </section>
+      <section class="accent-red">
+        <h2>Co-design checks</h2>
+        <ul>
+          <li>Do patients understand that this is not a clinician?</li>
+          <li>Can every user decline or call a nurse unaided?</li>
+          <li>Are speech, captions and touch usable in ED noise?</li>
+          <li>Is cleaning status credible and easy to audit?</li>
+          <li>Does placement protect privacy and clear evacuation paths?</li>
+        </ul>
+        <p><strong>Test with:</strong> patients, caregivers, nurses, infection prevention, biomedical engineering and accessibility reviewers.</p>
+      </section>
+    </div>
+    <footer>
+      <span>Completed design baseline for usability and physical-safety testing. No working robot or clinical validation.</span>
+      <span>Terry Benjamin Jr. | 4 August 2026</span>
+    </footer>
+  </main>
+</body>
+</html>

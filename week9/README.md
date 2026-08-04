@@ -1,46 +1,55 @@
-# Week 9: Interim Deliverable
+# Week 9: Final Deliverable
 
 **Student:** Terry Benjamin Jr.  
 **Programme:** CariSurg MedTech Pathways  
-**Date:** 1 August 2026
+**Date:** 4 August 2026
 
-## Design direction
+## Project position
 
-I chose a screen-based HCI design for the emergency triage desk. The primary
-user is the triage nurse. The model remains in shadow mode and offers a
-suggested ESI level for review; it does not write the final triage decision.
+This package turns the emergency-triage model into two deliberately different
+human-AI interaction concepts. The HCI concept is a nurse-facing workstation
+that presents a shadow-mode ESI suggestion for confirmation or override. The
+HRI concept is a stationary, sanitizable intake assistant that helps a patient
+give a complaint and accessibility preferences before handing the record to a
+nurse. Neither concept assigns a final ESI level or starts treatment.
 
-For the prototype, the normal data route is an EHR pull with source and time
-shown beside each field. The nurse can correct a value or enter it manually
-when an interface or device feed is unavailable. Required missing values stop
-the model request and leave the normal clinical workflow available.
+All patient details are fictional. The mock-ups are design artefacts rather
+than clinically validated software or a live robot.
 
-## Rubric map
+## Rubric evidence
 
 | Rubric area | Evidence |
 | --- | --- |
-| Draft Co-Design Canvas | [Rendered canvas](co-design-canvas.png) gives the one-page design view. [Detailed canvas notes](co-design-canvas.md) record the setting, users, task, system mode, interaction, safety concerns, open questions, and people needed for review. The [HTML source](co-design-canvas.html) is also committed. |
-| Initial Mock-Up Sketches | [Three-screen mock-up](mockups/triage-review.png) covers input review, the model suggestion, and nurse confirmation or override. The [HTML source](mockups/triage-review.html) keeps the layout inspectable. |
-| Inputs/Outputs Integration Notes | [Integration notes](inputs-outputs-integration.md) commit to the input route, required fields, output format, human action, no-action path, and degraded mode. |
-| Repo Discipline & Committed Artefacts | Week 9 work is contained in this folder. The mock-up source and rendered image are both committed, and the existing model pipeline remains unchanged. |
+| Completed Co-Design Canvases (HCI + HRI) | [HCI canvas](co-design-canvas.png) and [detailed HCI notes](co-design-canvas.md); [HRI canvas](hri-co-design-canvas.png) and [detailed HRI notes](hri-co-design-canvas.md). Inspectable HTML sources are committed beside both images. |
+| Two Mock-Ups (HCI + HRI) | [Nurse-facing HCI workflow](mockups/triage-review.png) covers input review, model suggestion, and confirm/override. [Embodied HRI workflow](mockups/hri-intake-assistant.png) covers consent, multimodal intake, nurse handoff, and degraded mode. |
+| Deployment System Requirements Document | [Deployment requirements](deployment-system-requirements.md) define scope, architecture, functional, non-functional, integration, data, security, fallback, verification, and pilot exit criteria. |
+| Safety Considerations One-Pager | [Safety one-pager](safety-one-pager.png) applies likelihood and severity scoring, layered controls, HCI and HRI risks, and residual-risk ownership. The [text version](safety-one-pager.md) provides the complete register. |
+| Walk-Through Video & Repo Placement | [Week 9 walkthrough video](walkthrough/week9-final-walkthrough.mp4) explains the context, both designs, deployment boundary, and safety controls. The [walkthrough transcript](walkthrough/transcript.md) is committed for accessibility. |
 
-## Prototype boundary
+## Key design decisions
 
-The mock-up uses a fictional patient record. It does not connect to an EHR,
-monitoring device, or live model endpoint. Its purpose is to make the proposed
-workflow concrete enough for nurses and technical reviewers to challenge
-before implementation.
+- The triage nurse owns the final ESI decision. The model remains decision
+  support only and never writes directly to the clinical record.
+- The workstation shows source and collection time for each input, blocks a
+  model request when required data are missing, and keeps manual triage
+  available during outages.
+- Output meaning is repeated through number, label, placement, and colour.
+- The current model has no calibrated patient-level confidence score, so the
+  interface does not invent one or claim a causal explanation.
+- The HRI assistant is stationary during use. It has no autonomous navigation,
+  diagnosis, ESI display, medication, or treatment capability.
+- A patient can decline the robot, change language or input mode, erase the
+  draft, or summon a nurse at any point.
+- Both designs keep an auditable distinction between imported data, user
+  corrections, model suggestion, and final human decision.
 
-## Decisions carried into the mock-up
+## Deployment boundary
 
-- The nurse sees the ESI suggestion as a number, text label, and colour cue.
-- The screen keeps the patient's vital signs and data provenance beside the
-  suggestion so the nurse can review the evidence in one place.
-- The nurse must confirm or override before any final ESI value is recorded.
-- An override requires a reason and is logged, visible, and reversible.
-- Missing required inputs block the model request instead of silently filling
-  a value.
-- If the model service is unavailable, the nurse continues manual triage.
+The first deployment is a limited shadow-mode pilot. It requires EHR read,
+model request, authorised decision write, audit write, identity, and charge
+nurse escalation interfaces. The HRI concept adds device health, microphone,
+screen, physical emergency stop, cleaning status, and privacy controls.
 
-These are draft choices for co-design review, not a claim that the interface
-has been clinically validated.
+No deployment proceeds until triage nurses complete scenario-based usability
+testing, Clinical IT verifies interface and downtime behaviour, and clinical
+governance accepts the residual risk documented in this folder.

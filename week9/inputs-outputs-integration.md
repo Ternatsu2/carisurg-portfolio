@@ -67,8 +67,9 @@ that a single vital sign caused the prediction.
 The nurse must choose one of two paths:
 
 1. **Confirm:** record the suggested ESI as the nurse's final decision.
-2. **Override:** select the nurse's ESI level and give a reason. Draft reasons
-   are clinical judgement, new information, data quality issue, and other.
+2. **Override:** select the nurse's ESI level and give a reason. The permitted
+   categories are clinical judgement, new information, data quality issue, and
+   other.
 
 Both paths record the nurse, time, model suggestion, final ESI, data version,
 and any override reason. The nurse can revise the decision before closing the
@@ -81,7 +82,9 @@ A model suggestion remains pending until a nurse responds. For a suggested ESI
 seconds and adds the case to a charge-nurse review queue. It does not write a
 final ESI or start a treatment action automatically.
 
-The reminder timing and escalation route are draft choices for nurse review.
+The 60-second reminder and charge-nurse route are pilot settings. They must be
+validated with nurses during scenario testing and adjusted if they increase
+alarm burden or delay care.
 
 ## Degraded mode
 
@@ -104,5 +107,6 @@ The first implementation needs four interfaces:
 4. **Audit write:** store the model suggestion, final human decision, override
    reason, user, times, data source, and version identifiers.
 
-The prototype in this interim is visual only. These notes define what would
-have to connect before a later implementation or shadow-mode pilot.
+The current artefacts are visual designs rather than connected clinical
+software. These interfaces and acceptance conditions must be implemented and
+verified before a shadow-mode pilot.

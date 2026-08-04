@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 9 safety considerations one-pager</title>
+  <style>
+    :root { --ink:#202326; --muted:#656a6d; --paper:#f3f1ec; --panel:#fffefa; --line:#b8b4ac; --red:#9e2f29; --amber:#a76015; --green:#41694f; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial,Helvetica,sans-serif; letter-spacing:0; }
+    main { width:1540px; min-height:1040px; margin:0 auto; padding:38px 42px 30px; }
+    header { display:flex; justify-content:space-between; align-items:end; border-bottom:2px solid var(--ink); padding-bottom:15px; }
+    h1 { margin:0; font:600 34px Georgia,"Times New Roman",serif; }
+    .label { color:var(--muted); font-size:12px; font-weight:700; text-transform:uppercase; }
+    header p { margin:0; color:var(--muted); font-size:14px; text-align:right; }
+    .method { display:grid; grid-template-columns:170px 1fr 340px; gap:22px; align-items:center; padding:16px 0; border-bottom:1px solid var(--line); }
+    .method p { margin:0; font-size:13px; line-height:1.4; }
+    .legend { display:flex; gap:8px; justify-content:flex-end; }
+    .legend span { border:1px solid var(--line); background:var(--panel); padding:7px 9px; font-size:11px; }
+    table { width:100%; border-collapse:collapse; margin-top:18px; background:var(--panel); table-layout:fixed; }
+    th, td { border:1px solid var(--line); padding:11px 12px; vertical-align:top; font-size:12px; line-height:1.35; }
+    th { background:var(--ink); color:#fff; text-align:left; font-size:12px; }
+    th:nth-child(1){width:20%} th:nth-child(2){width:9%} th:nth-child(3){width:42%} th:nth-child(4){width:9%} th:nth-child(5){width:20%}
+    .score { text-align:center; font-weight:700; font-size:15px; }
+    .high { color:var(--red); } .medium { color:var(--amber); } .low { color:var(--green); }
+    .layers { display:grid; grid-template-columns:repeat(5,1fr); gap:9px; margin-top:18px; }
+    .layer { background:var(--panel); border-top:5px solid var(--green); border-left:1px solid var(--line); border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:12px; min-height:116px; }
+    .layer strong { display:block; margin-bottom:6px; font:600 16px Georgia,"Times New Roman",serif; }
+    .layer p { margin:0; font-size:11px; line-height:1.4; }
+    .bottom { display:grid; grid-template-columns:1fr 1.25fr; gap:16px; margin-top:16px; }
+    .box { background:var(--panel); border:1px solid var(--line); border-top:5px solid var(--amber); padding:13px 15px; }
+    .box.risk { border-top-color:var(--red); }
+    .box h2 { margin:0 0 7px; font:600 18px Georgia,"Times New Roman",serif; }
+    .box p { margin:0; font-size:12px; line-height:1.42; }
+    footer { display:flex; justify-content:space-between; margin-top:14px; color:var(--muted); font-size:11px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header><div><div class="label">CariSurg Week 9 final</div><h1>Safety considerations one-pager</h1></div><p>HCI workstation + stationary HRI intake assistant<br>Shadow-mode pilot | human triage decisions only</p></header>
+    <div class="method"><span class="label">Risk method</span><p>Initial and residual risk = likelihood (1 rare to 5 almost certain) x severity (1 negligible to 5 catastrophic). Controls are layered because each one can fail.</p><div class="legend"><span>15-25 high</span><span>8-12 medium</span><span>1-6 low</span></div></div>
+    <table>
+      <thead><tr><th>Risk</th><th>Initial</th><th>Layered controls</th><th>Residual</th><th>Owner and trigger</th></tr></thead>
+      <tbody>
+        <tr><td><strong>HCI under-triage or automation bias</strong></td><td class="score high">20</td><td>Nurse owns final ESI; source data beside suggestion; no auto-write; immediate override; shadow monitoring; weekly ESI 1 review.</td><td class="score medium">10</td><td>Clinical governance. Pause for harm or threshold breach.</td></tr>
+        <tr><td><strong>HCI stale, missing or incorrect input</strong></td><td class="score high">16</td><td>Source and time visible; required-field block; correction retains original; no display imputation; manual path within two actions.</td><td class="score medium">8</td><td>Triage lead + Clinical IT. Investigate repeated source failures.</td></tr>
+        <tr><td><strong>HCI alarm fatigue, clutter or miskey</strong></td><td class="score high">16</td><td>One high-acuity reminder; grouped reading path; spaced controls; confirmation before write; keyboard and glare testing.</td><td class="score medium">8</td><td>Clinical operations. Revise after usability failure or ignored-alert pattern.</td></tr>
+        <tr><td><strong>HRI infection transmission</strong></td><td class="score high">16</td><td>Voice-first path; wipeable shell; cleaning status; cleaning log; overdue lockout; infection-control audit.</td><td class="score medium">8</td><td>Infection prevention. Quarantine after missed or failed cleaning.</td></tr>
+        <tr><td><strong>HRI speech error, privacy loss or excess trust</strong></td><td class="score high">16</td><td>Push-to-talk; captions/read-back; correction; directional audio; minimum data; no ESI or diagnosis; "nurse decides" statement.</td><td class="score medium">8</td><td>Patient experience + privacy. Pause for misleading handoff or disclosure.</td></tr>
+        <tr><td><strong>HRI collision, power, network or sensor failure</strong></td><td class="score high">15</td><td>Stationary locked base; no arms/navigation; clearance zone; stop switch; health checks; low-battery warning; fail-closed nurse route.</td><td class="score low">5</td><td>Biomedical engineering. Lock out any failed safety control.</td></tr>
+      </tbody>
+    </table>
+    <div class="layers">
+      <div class="layer"><strong>1. Clinical boundary</strong><p>No autonomous ESI, diagnosis, treatment or model-to-EHR write.</p></div>
+      <div class="layer"><strong>2. Input protection</strong><p>Provenance, time, validation, read-back and correction.</p></div>
+      <div class="layer"><strong>3. Human confirmation</strong><p>Nurse confirm/override; patient consent, erase, decline or call nurse.</p></div>
+      <div class="layer"><strong>4. Technical fallback</strong><p>Fail closed, no stale suggestion, manual path and device lockout.</p></div>
+      <div class="layer"><strong>5. Monitoring</strong><p>Audit events, class and subgroup review, pause triggers and sign-off.</p></div>
+    </div>
+    <div class="bottom">
+      <div class="box"><h2>Accessibility and inclusion</h2><p>Number and text repeat every colour cue. HCI supports keyboard use and AA contrast. HRI supports captions, touch, push-to-talk, adjustable screen and volume, language choice, and immediate nurse or interpreter handoff.</p></div>
+      <div class="box risk"><h2>Residual-risk decision</h2><p>No control removes under-triage, rushed confirmation, overheard speech or device failure. The first deployment remains a limited shadow-mode pilot. Clinical governance, Clinical IT, infection prevention, biomedical engineering and patient experience must accept their assigned residual risks and can pause the pilot independently.</p></div>
+    </div>
+    <footer><span>Risk scores are prioritisation aids, not proof of safety.</span><span>Terry Benjamin Jr. | 4 August 2026</span></footer>
+  </main>
+</body>
+</html>

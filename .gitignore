@@ -21,3 +21,4 @@ data/*.json
 *.bak
 artifacts/*.joblib
 artifacts/*.json
+week9/walkthrough/.video-build/

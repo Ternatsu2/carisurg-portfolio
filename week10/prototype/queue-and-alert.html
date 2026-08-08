@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 10 queue and alert prototype</title>
+  <style>
+    :root {
+      --ink: #202326;
+      --muted: #676b6e;
+      --paper: #f1efe9;
+      --panel: #fffefa;
+      --soft: #f7f5f0;
+      --line: #c8c4bb;
+      --critical: #8f1d1d;
+      --high: #9a3f08;
+      --medium: #7a5200;
+      --low: #285f4d;
+      --ok: #39604a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(1580px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding: 30px 0 38px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 { margin: 0; font: 600 34px/1.1 Georgia, "Times New Roman", serif; }
+    header p, footer { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .eyebrow {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+    }
+
+    .board { display: grid; grid-template-columns: 1.05fr .95fr .95fr; gap: 15px; }
+
+    .frame {
+      min-height: 825px;
+      background: var(--panel);
+      border: 1px solid #aaa69e;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, .06);
+    }
+
+    .frame-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 16px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .screen { padding: 16px; }
+    h2 { margin: 0; font: 600 23px/1.2 Georgia, "Times New Roman", serif; }
+    h3 { margin: 0; font-size: 16px; }
+    p { line-height: 1.4; }
+
+    .queue-summary, .patient, .field, .choice, .audit, .notice {
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .queue-summary { display: flex; justify-content: space-between; padding: 11px 12px; margin: 14px 0 10px; }
+    .queue-summary strong { font-size: 14px; }
+    .queue-summary span { color: var(--muted); font-size: 12px; }
+
+    .patient {
+      display: grid;
+      grid-template-columns: 48px 1fr 88px;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+      padding: 12px;
+      border-left: 6px solid var(--tier);
+    }
+
+    .patient .badge {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--tier);
+      color: var(--tier);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .patient strong { display: block; font-size: 14px; margin-bottom: 3px; }
+    .patient p { margin: 0; color: var(--muted); font-size: 12px; }
+    .patient .wait { text-align: right; font-size: 12px; }
+    .patient .wait strong { color: var(--tier); }
+
+    .critical { --tier: var(--critical); }
+    .high { --tier: var(--high); }
+    .medium { --tier: var(--medium); }
+    .low { --tier: var(--low); }
+
+    .legend { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .legend span { border: 1px solid var(--line); padding: 6px 8px; font-size: 11px; }
+
+    .alert-banner {
+      margin: 13px 0 15px;
+      border: 2px solid var(--critical);
+      border-left-width: 12px;
+      padding: 14px 15px;
+      background: #fff8f7;
+    }
+
+    .alert-banner .tierline { color: var(--critical); font-weight: 800; font-size: 13px; }
+    .alert-banner h3 { margin: 6px 0 8px; font-size: 21px; }
+    .alert-banner p { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .field { min-height: 68px; padding: 9px 10px; }
+    .field label { display: block; color: var(--muted); font-size: 11px; margin-bottom: 5px; }
+    .field strong { font-size: 15px; }
+    .source { display: block; color: var(--ok); font-size: 10px; margin-top: 5px; }
+
+    .notice { margin-top: 11px; padding: 10px 11px; border-left: 4px solid var(--high); background: #fbf4ec; }
+    .notice strong { font-size: 12px; }
+    .notice p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
+
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    button { min-height: 42px; border: 1px solid var(--ink); border-radius: 4px; background: var(--panel); color: var(--ink); font: 700 13px Arial, sans-serif; }
+    button.primary { background: var(--ink); color: #fff; }
+
+    .decision-head { padding-bottom: 12px; margin-bottom: 13px; border-bottom: 1px solid var(--line); }
+    .decision-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+
+    .model-card { border: 2px solid var(--critical); margin-bottom: 14px; }
+    .model-card .top { display: grid; grid-template-columns: 94px 1fr; }
+    .score { display: grid; place-items: center; background: var(--critical); color: #fff; padding: 12px; text-align: center; }
+    .score strong { font: 600 45px Georgia, serif; }
+    .score span { font-size: 10px; font-weight: 700; }
+    .model-copy { padding: 14px; }
+    .model-copy strong { font-size: 15px; }
+    .model-copy p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+    .model-note { border-top: 1px solid var(--line); padding: 9px 11px; color: var(--muted); font-size: 10px; }
+
+    .choices { display: grid; gap: 8px; }
+    .choice { padding: 11px 12px; }
+    .choice.selected { border: 2px solid var(--ink); background: var(--soft); }
+    .choice strong { display: block; font-size: 13px; }
+    .choice p { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+
+    .reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 10px; }
+    .reason { border: 1px solid var(--line); padding: 8px; font-size: 11px; }
+    .reason.selected { border: 2px solid var(--high); background: #fbf4ec; }
+    .audit { margin-top: 12px; padding: 10px; color: var(--muted); font-size: 10px; line-height: 1.45; }
+
+    footer { display: flex; justify-content: space-between; margin-top: 14px; }
+
+    @media (max-width: 980px) {
+      main { width: min(100% - 24px, 680px); }
+      .board { grid-template-columns: 1fr; }
+      .frame { min-height: auto; }
+      header { align-items: start; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><span class="eyebrow">CariSurg Week 10 interim</span><h1>Queue, alert and decision path</h1></div>
+      <p>Initial HCI prototype | fictional patient data</p>
+    </header>
+
+    <section class="board">
+      <article class="frame">
+        <div class="frame-head"><strong>1. Patient queue</strong><span>4 need review</span></div>
+        <div class="screen">
+          <span class="eyebrow">Emergency triage support</span>
+          <h2>Review queue</h2>
+          <div class="queue-summary"><strong>Sorted by urgency</strong><span>Updated 10:44</span></div>
+          <div class="patient critical"><div class="badge">!!</div><div><strong>CRITICAL | Record 0917</strong><p>Start immediate clinical assessment now.</p></div><div class="wait"><strong>02 min</strong><span>waiting</span></div></div>
+          <div class="patient high"><div class="badge">↑</div><div><strong>HIGH | Record 1134</strong><p>Assess this patient within ten minutes.</p></div><div class="wait"><strong>06 min</strong><span>waiting</span></div></div>
+          <div class="patient medium"><div class="badge">◷</div><div><strong>MEDIUM | Record 0848</strong><p>Recheck this patient within thirty minutes.</p></div><div class="wait"><strong>18 min</strong><span>waiting</span></div></div>
+          <div class="patient low"><div class="badge">●</div><div><strong>LOW | Record 1206</strong><p>Review this patient during the next queue check.</p></div><div class="wait"><strong>11 min</strong><span>waiting</span></div></div>
+          <div class="legend"><span>!! Critical</span><span>↑ High</span><span>◷ Medium</span><span>● Low</span></div>
+          <div class="notice"><strong>Model unavailable?</strong><p>Keep the queue visible and continue manual triage. Never show a stale suggestion as current.</p></div>
+        </div>
+      </article>
+
+      <article class="frame">
+        <div class="frame-head"><strong>2. Alert and source review</strong><span>Record 0917</span></div>
+        <div class="screen">
+          <span class="eyebrow">Fictional adult walk-in</span>
+          <h2>Review before acting</h2>
+          <div class="alert-banner"><div class="tierline">!! CRITICAL</div><h3>Start immediate clinical assessment now.</h3><p>Model suggests ESI 1. A nurse must review the inputs and make the final decision.</p></div>
+          <div class="fields">
+            <div class="field"><label>Chief complaint</label><strong>Shortness of breath</strong><span class="source">Nurse entry | 10:41</span></div>
+            <div class="field"><label>Wait time</label><strong>02 min</strong><span class="source">Queue | live</span></div>
+            <div class="field"><label>Pulse</label><strong>118 bpm</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>Blood pressure</label><strong>92 / 58</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>SpO2</label><strong>86%</strong><span class="source">Monitor | 10:42</span></div>
+            <div class="field"><label>Oxygen context</label><strong>Room air</strong><span class="source">Nurse confirmed</span></div>
+            <div class="field"><label>Respiratory rate</label><strong>31 /min</strong><span class="source">Manual | 10:43</span></div>
+            <div class="field"><label>Model status</label><strong>Current</strong><span class="source">Run | 10:44</span></div>
+          </div>
+          <div class="notice"><strong>Data check</strong><p>Oxygen context and respiratory rate were entered manually. Confirm before final ESI selection.</p></div>
+          <div class="actions"><button>Return to queue</button><button class="primary">Review decision</button></div>
+        </div>
+      </article>
+
+      <article class="frame">
+        <div class="frame-head"><strong>3. Nurse decision</strong><span>Manual ownership</span></div>
+        <div class="screen">
+          <div class="decision-head"><span class="eyebrow">Record 0917</span><h2>Confirm or override</h2><p>The model cannot write the final ESI level.</p></div>
+          <div class="model-card">
+            <div class="top"><div class="score"><span>MODEL SUGGESTS</span><strong>1</strong><span>ESI</span></div><div class="model-copy"><strong>Critical review state</strong><p>Based on reviewed structured inputs. No calibrated patient-level confidence is available.</p></div></div>
+            <div class="model-note">Source values remain visible in the previous step and in the audit record.</div>
+          </div>
+          <span class="eyebrow">Nurse selection</span>
+          <div class="choices">
+            <div class="choice selected"><strong>Confirm ESI 1</strong><p>Record the nurse's decision and the model suggestion separately.</p></div>
+            <div class="choice"><strong>Override suggestion</strong><p>Select the final ESI level and a short reason. The nurse's decision prevails.</p></div>
+          </div>
+          <span class="eyebrow" style="margin-top:14px">If overriding, choose a reason</span>
+          <div class="reasons"><div class="reason selected">Clinical presentation</div><div class="reason">Corrected input</div><div class="reason">Missing context</div><div class="reason">Other documented reason</div></div>
+          <div class="actions"><button>Back to inputs</button><button class="primary">Record nurse decision</button></div>
+          <div class="audit"><strong>Audit preview</strong><br>Imported values and times<br>Nurse corrections<br>Model suggestion<br>Final nurse decision and reason<br>User and submission time</div>
+          <div class="notice"><strong>Downtime rule</strong><p>If the model or data feed is unavailable, suppress the suggestion and preserve the manual ESI workflow.</p></div>
+        </div>
+      </article>
+    </section>
+
+    <footer><span>Colour is limited to urgency and status.</span><span>Not for clinical use</span></footer>
+  </main>
+</body>
+</html>
+

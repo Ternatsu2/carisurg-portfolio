@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Week 10 urgency-tier states</title>
+  <style>
+    :root {
+      --ink: #202326;
+      --muted: #676b6e;
+      --paper: #f3f1ec;
+      --panel: #fffefa;
+      --line: #c8c4bb;
+      --critical: #8f1d1d;
+      --high: #9a3f08;
+      --medium: #7a5200;
+      --low: #285f4d;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      letter-spacing: 0;
+    }
+
+    main {
+      width: min(1540px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding: 34px 0 44px;
+    }
+
+    header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 600;
+    }
+
+    header p, footer { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .eyebrow {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .states {
+      display: grid;
+      gap: 12px;
+    }
+
+    .alert {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr) 310px;
+      min-height: 148px;
+      background: var(--panel);
+      border: 2px solid var(--tier);
+    }
+
+    .tier {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--tier);
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .tier strong { font-size: 18px; }
+    .symbol { font-size: 34px; line-height: 1; margin-bottom: 8px; }
+
+    .message {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 22px 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .message h2 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      line-height: 1.2;
+    }
+
+    .message p, .context p { margin: 4px 0; font-size: 14px; line-height: 1.4; }
+    .message p { color: var(--muted); }
+
+    .context {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 18px 22px;
+      background: #f7f5f0;
+    }
+
+    .context strong { font-size: 15px; }
+    .context span { color: var(--muted); }
+
+    .critical { --tier: var(--critical); }
+    .high { --tier: var(--high); }
+    .medium { --tier: var(--medium); }
+    .low { --tier: var(--low); }
+
+    .words-only {
+      margin-top: 22px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 18px 22px;
+    }
+
+    .words-only h2 { margin: 0 0 12px; font-size: 18px; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .card { border: 1px solid var(--ink); padding: 14px; min-height: 67px; font-weight: 700; }
+
+    footer { display: flex; justify-content: space-between; margin-top: 16px; }
+
+    @media (max-width: 900px) {
+      main { width: min(100% - 24px, 720px); }
+      header { align-items: start; gap: 12px; }
+      .alert { grid-template-columns: 100px 1fr; }
+      .context { grid-column: 1 / -1; border-top: 1px solid var(--line); }
+      .message { border-right: 0; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <span class="eyebrow">CariSurg Week 10 interim</span>
+        <h1>Four urgency states</h1>
+      </div>
+      <p>Fictional shadow-mode alert concepts</p>
+    </header>
+
+    <section class="states" aria-label="Urgency alert states">
+      <article class="alert critical">
+        <div class="tier"><span class="symbol" aria-hidden="true">!!</span><strong>CRITICAL</strong></div>
+        <div class="message"><span class="eyebrow">Immediate action</span><h2>Start immediate clinical assessment now.</h2><p>Primary alert: 5 words, active voice, no abbreviation.</p></div>
+        <div class="context"><strong>Model suggests ESI 1</strong><p><span>Wait:</span> 02 min</p><p><span>Context:</span> SpO2 86% on room air</p><p><span>Owner:</span> Nurse confirms or overrides</p></div>
+      </article>
+
+      <article class="alert high">
+        <div class="tier"><span class="symbol" aria-hidden="true">↑</span><strong>HIGH</strong></div>
+        <div class="message"><span class="eyebrow">Prompt action</span><h2>Assess this patient within ten minutes.</h2><p>Primary alert: 6 words, direct and time bounded.</p></div>
+        <div class="context"><strong>Model suggests ESI 2</strong><p><span>Wait:</span> 06 min</p><p><span>Context:</span> Persistent chest discomfort</p><p><span>Owner:</span> Nurse confirms or overrides</p></div>
+      </article>
+
+      <article class="alert medium">
+        <div class="tier"><span class="symbol" aria-hidden="true">◷</span><strong>MEDIUM</strong></div>
+        <div class="message"><span class="eyebrow">Planned reassessment</span><h2>Recheck this patient within thirty minutes.</h2><p>Primary alert: 6 words, visible without an alarm tone.</p></div>
+        <div class="context"><strong>Model suggests ESI 3</strong><p><span>Wait:</span> 18 min</p><p><span>Context:</span> Stable vital signs</p><p><span>Owner:</span> Nurse confirms or overrides</p></div>
+      </article>
+
+      <article class="alert low">
+        <div class="tier"><span class="symbol" aria-hidden="true">●</span><strong>LOW</strong></div>
+        <div class="message"><span class="eyebrow">Queue monitoring</span><h2>Review this patient during the next queue check.</h2><p>Primary alert: 8 words, silent and non-interruptive.</p></div>
+        <div class="context"><strong>Model suggests ESI 4-5</strong><p><span>Wait:</span> 11 min</p><p><span>Context:</span> No current instability flag</p><p><span>Owner:</span> Nurse confirms or overrides</p></div>
+      </article>
+    </section>
+
+    <section class="words-only">
+      <h2>Stage 1 peer test: randomise these plain-text cards</h2>
+      <div class="cards">
+        <div class="card">Recheck this patient within thirty minutes.</div>
+        <div class="card">Start immediate clinical assessment now.</div>
+        <div class="card">Review this patient during the next queue check.</div>
+        <div class="card">Assess this patient within ten minutes.</div>
+      </div>
+    </section>
+
+    <footer><span>Words, label, symbol, placement and colour repeat meaning.</span><span>Not for clinical use</span></footer>
+  </main>
+</body>
+</html>
+
